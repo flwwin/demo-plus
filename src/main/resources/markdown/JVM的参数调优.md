@@ -77,7 +77,7 @@
 
 - -xx:MetaspaceSize  重要  查看GC回收
 
-- -xx：PrintGCDetails
+- -xx：+PrintGCDetails
 
   - gc日志解析
 

@@ -8,10 +8,6 @@ import java.util.Random;
  */
 public class HeapSpaceOomDemo {
     public static void main(String[] args) {
-        String str = "123";
-        while (true){
-            str += str + new Random().nextInt(111111111)+new Random().nextInt(222222);
-            str.intern();
-        }
+        Byte[] b = new Byte[20*1024*1024];
     }
 }
