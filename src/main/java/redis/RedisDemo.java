@@ -7,12 +7,14 @@ import java.util.*;
 public class RedisDemo {
     public static void main(String[] args) {
         Jedis jedis = new Jedis("127.0.0.1", 6379);
+
         //key
         Set<String> keys = jedis.keys("*");
         for (Iterator iterator = keys.iterator(); iterator.hasNext(); ) {
             String key = (String) iterator.next();
             System.out.println(key);
         }
+
         System.out.println("jedis.exists====>" + jedis.exists("k2"));
         System.out.println(jedis.ttl("k1"));
         jedis.append("k1", "myreids");
@@ -21,15 +23,18 @@ public class RedisDemo {
         System.out.println("----------------------------------------");
         jedis.mset("str1", "v1", "str2", "v2", "str3", "v3");
         System.out.println(jedis.mget("str1", "str2", "str3"));
-//list
+
+        //list
         System.out.println("----------------------------------------");
-//jedis.lpush("mylist","v1","v2","v3","v4","v5");
+
+        //jedis.lpush("mylist","v1","v2","v3","v4","v5");
         List<String> list = jedis.lrange("mylist", 0, -1);
         for (String element :
                 list) {
             System.out.println(element);
         }
-//set
+
+        //set
         jedis.sadd("orders", "jd001");
         jedis.sadd("orders", "jd002");
         jedis.sadd("orders", "jd003");
@@ -41,7 +46,7 @@ public class RedisDemo {
         }
         jedis.srem("orders", "jd002");
         System.out.println(jedis.smembers("orders").size());
-//hash
+        //hash
         jedis.hset("hash1", "userName", "lisi");
         System.out.println(jedis.hget("hash1", "userName"));
         Map<String, String> map = new HashMap<String, String>();
@@ -54,7 +59,7 @@ public class RedisDemo {
                 result) {
             System.out.println(element);
         }
-//zset
+       //zset
         jedis.zadd("zset01", 60d, "v1");
         jedis.zadd("zset01", 70d, "v2");
         jedis.zadd("zset01", 80d, "v3");
