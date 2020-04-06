@@ -38,7 +38,7 @@
 
 - jinfo -flags  xxx进程号  查看所有的默认参数
 
-   ![](..\image\查看JVM默认所有参数.png)
+   ![](..\..\image\查看JVM默认所有参数.png)
 
 -  comand line 就是用户定义的
 - 解释 -xms = -xx:initialHeapSize  -xmx   =  -xx: MaxHeapSize
@@ -47,15 +47,15 @@
 
 - java -xx: +PrintFlagsInitial
 
-  ![](..\image\默认所有启动参数jvm.png)
+  ![](..\..\image\默认所有启动参数jvm.png)
 
 - := 就是我们修改过得  -xx: + PrintFlagsFinal
 
-  ![](..\image\PrintFlagsFinal -version.png)
+  ![](..\..\image\PrintFlagsFinal -version.png)
 
     ####  JVM 查看修改变更值，修改并查看
 
-![](..\image\修改jvm参数并查看.png)
+![](..\..\image\修改jvm参数并查看.png)
 
 -  -xx: +PrintCommandLineFlags -version
 
@@ -81,20 +81,20 @@
 
   - gc日志解析
 
-    ![](..\image\gc日志解读.png)
+    ![](..\..\image\gc日志解读.png)
 
   - full  gc 日志解读
 
-    ![](..\image\Full gc 日志解读.png)
+    ![](..\..\image\Full gc 日志解读.png)
 
 - -xx:SuivivoRatio
 
   - 设置新生代中eden 和s0/s1空间的比例  默认 -xx:SurvivorRatio = 8
 
-    ![](..\image\Eden,s1,s2 内存占比.png)
+    ![](..\..\image\Eden,s1,s2 内存占比.png)
 
 - -xx: newRatio
 
-  ![](..\image\新生代和老年代内存占比.png)
+  ![](..\..\image\新生代和老年代内存占比.png)
 
 - -xx:MaxTenuringThreaShold  对象在新生代可以接受多少次gc次数，取值在0-15之间
