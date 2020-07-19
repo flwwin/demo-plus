@@ -1,7 +1,7 @@
 package javase;
 
 public enum EnumDemo {
-    ONE(1,"齐国"),TWO(2,"楚国");
+    ONE(1, "齐国"), TWO(2, "楚国");
 
     private int resCode;
     private String resStr;
@@ -27,19 +27,25 @@ public enum EnumDemo {
         this.resStr = resStr;
     }
 
-    public static EnumDemo forEachEnum(int ind){
+    public static EnumDemo forEachEnum(int ind) {
         EnumDemo[] arrs = EnumDemo.values();
         for (EnumDemo item : arrs) {
-            if (item.getResCode() == ind){
+            if (item.getResCode() == ind) {
                 return item;
             }
         }
         return null;
     }
 
+
     public static void main(String[] args) {
-        for (int i = 1; i <3 ; i++) {
-            System.out.println(EnumDemo.forEachEnum(i).getResStr());
-        }
+        EnumDemo enumDemo = EnumDemo.valueOf(EnumDemo.class,"ONE");
+        System.out.println(enumDemo.resCode);
+        System.out.println(enumDemo.resStr);
+
+        Student student = new Student();
+        student.setCountry(EnumDemo.ONE);
+
+        String resStr = student.getCountry().getResStr();
     }
 }

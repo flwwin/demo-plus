@@ -41,6 +41,6 @@ public class DeadLock {
                     }
                 }
             }
-        }, "AA").start();
+        }, "BB").start();
     }
 }

@@ -12,13 +12,13 @@ import java.util.concurrent.TimeUnit;
 public class CountDownLatchDemo {
 
     public static void main(String[] args) {
-        CountDownLatch countDownLatch = new CountDownLatch(7);
+        CountDownLatch countDownLatch = new CountDownLatch(9);
 
-        for (int i = 1; i < 8; i++) {
+        for (int i = 1; i <= countDownLatch.getCount(); i++) {
 
             new Thread(() -> {
                 try {
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -28,12 +28,16 @@ public class CountDownLatchDemo {
         }
 
         try {
-            countDownLatch.await();
+           /* 1：countDownLatch没有减为0的时候，await一直都会阻塞线程的,发生异常，没有执行countDown也是阻塞。
+              countDownLatch.await();
+              2：还可以计时等待
+            */
+            countDownLatch.await(3,TimeUnit.SECONDS);
+            System.out.println("countDownLatch = " + countDownLatch.getCount()+"工作做完了，下班了！！");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        System.out.println("人都走了,关门。。。");
     }
 
 }

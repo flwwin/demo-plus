@@ -20,13 +20,10 @@ public class ArrayListDemo {
 
         //
         for (int i = 0; i <30 ; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    String str = UUID.randomUUID().toString().substring(0, 8);
-                    synchronizedList.add(str);
-                    System.out.println(synchronizedList);
-                }
+            new Thread(() -> {
+                String str = UUID.randomUUID().toString().substring(0, 8);
+                synchronizedList.add(str);
+                System.out.println(synchronizedList);
             },String.valueOf(i)).start();
         }
     }
