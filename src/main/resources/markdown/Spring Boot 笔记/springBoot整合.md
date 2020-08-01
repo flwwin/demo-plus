@@ -118,7 +118,7 @@ public @interface Caching {
 
 ``` properties
 #配置redis
-spring.redis.host=192.168.1.102
+spring.com.leven.demoplus.redis.host=192.168.1.102
 ```
 
 3) 然后再项目中注入RedisTemplate和StringRedisTemplate就可以操作redis了
@@ -260,25 +260,33 @@ public class MyRedisconfig {
 | 支持消息类型 | 多种消息类型：   TextMessage   MapMessage   BytesMessage   StreamMessage   ObjectMessage   Message （只有消息头和属性） | byte[]   当实际应用时，有复杂的消息，可以将消息序列化后发送。 |
 | 综合评价     | JMS 定义了JAVA API层面的标准；在java体系中，多个client均可以通过JMS进行交互，不需要应用修改代码，但是其对跨平台的支持较差； | AMQP定义了wire-level层的协议标准；天然具有跨平台、跨语言特性。 |
 
-8.Spring支持
+8.Spring支持
 
-–spring-jms提供了对JMS的支持
 
-–spring-rabbit提供了对AMQP的支持
+–spring-jms提供了对JMS的支持
 
-–需要ConnectionFactory的实现来连接消息代理
 
-–提供JmsTemplate、RabbitTemplate来发送消息
+–spring-rabbit提供了对AMQP的支持
 
-–@JmsListener（JMS）、@RabbitListener（AMQP）注解在方法上监听消息代理发布的消息
+
+–需要ConnectionFactory的实现来连接消息代理
+
+
+–提供JmsTemplate、RabbitTemplate来发送消息
+
+
+–@JmsListener（JMS）、@RabbitListener（AMQP）注解在方法上监听消息代理发布的消息
+
 
 –@EnableJms、@EnableRabbit开启支持
 
 –
 
-9.Spring Boot自动配置
+9.Spring Boot自动配置
 
-–JmsAutoConfiguration
+
+–JmsAutoConfiguration
+
 
 –RabbitAutoConfiguration
 
@@ -310,14 +318,16 @@ Exchange
 交换器，用来接收生产者发送的消息并将这些消息路由给服务器中的队列。
 Exchange有4种类型：direct(默认)，fanout, topic, 和headers，不同类型的Exchange转发消息的策略有所区别	
 
-Queue
+Queue
+
 
 消息队列，用来保存消息直到发送给消费者。它是消息的容器，也是消息的终点。一个消息可投入一个或多个队列。消息一直在队列里面，等待消费者连接到这个队列将其取走。
 
 Binding
 
 
-绑定，用于消息队列和交换器之间的关联。一个绑定就是基于路由键将交换器和消息队列连接起来的路由规则，所以可以将交换器理解成一个由绑定构成的路由表。
+绑定，用于消息队列和交换器之间的关联。一个绑定就是基于路由键将交换器和消息队列连接起来的路由规则，所以可以将交换器理解成一个由绑定构成的路由表。
+
 
 Exchange 和Queue的绑定可以是多对多的关系。
 
@@ -327,7 +337,8 @@ Connection
 
 Channel
 
-信道，多路复用连接中的一条独立的双向数据流通道。信道是建立在真实的TCP连接内的虚拟连接，AMQP 命令都是通过信道发出去的，不管是发布消息、订阅队列还是接收消息，这些动作都是通过信道完成。因为对于操作系统来说建立和销毁 TCP 都是非常昂贵的开销，所以引入了信道的概念，以复用一条 TCP 连接。
+信道，多路复用连接中的一条独立的双向数据流通道。信道是建立在真实的TCP连接内的虚拟连接，AMQP 命令都是通过信道发出去的，不管是发布消息、订阅队列还是接收消息，这些动作都是通过信道完成。因为对于操作系统来说建立和销毁 TCP 都是非常昂贵的开销，所以引入了信道的概念，以复用一条 TCP 连接。
+
 
  Consumer
 
@@ -366,7 +377,8 @@ Broker
 
 ![](/images/图片3.png)
 
-消息中的路由键（routing key）如果和 Binding 中的 binding key 一致， 交换器就将消息发到对应的队列中。路由键与队列名完全匹配，如果一个队列绑定到交换机要求路由键为“dog”，则只转发 routing key 标记为“dog”的消息，不会转发“dog.puppy”，也不会转发“dog.guard”等等。它是完全匹配、单播的模式。
+消息中的路由键（routing key）如果和 Binding 中的 binding key 一致， 交换器就将消息发到对应的队列中。路由键与队列名完全匹配，如果一个队列绑定到交换机要求路由键为“dog”，则只转发 routing key 标记为“dog”的消息，不会转发“dog.puppy”，也不会转发“dog.guard”等等。它是完全匹配、单播的模式。
+
 
 #####  Fanout:
 
@@ -1134,13 +1146,17 @@ public class TicketService {
 
 –IDEA使用ctrl+F9
 
-–或做一些小调整
+–或做一些小调整
 
-  Intellij IEDA和Eclipse不同，Eclipse设置了自动编译之后，修改类它会自动编译，而IDEA在非RUN或DEBUG情况下才会自动编译（前提是你已经设置了Auto-Compile）。
 
-•设置自动编译（settings-compiler-make project automatically）
+  Intellij IEDA和Eclipse不同，Eclipse设置了自动编译之后，修改类它会自动编译，而IDEA在非RUN或DEBUG情况下才会自动编译（前提是你已经设置了Auto-Compile）。
 
-•ctrl+shift+alt+/（maintenance）
+
+•设置自动编译（settings-compiler-make project automatically）
+
+
+•ctrl+shift+alt+/（maintenance）
+
 
 •勾选compiler.automake.allow.when.app.running
 

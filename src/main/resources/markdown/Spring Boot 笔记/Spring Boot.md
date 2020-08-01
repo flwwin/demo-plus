@@ -854,8 +854,8 @@ org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfigura
 org.springframework.boot.autoconfigure.data.neo4j.Neo4jDataAutoConfiguration,\
 org.springframework.boot.autoconfigure.data.neo4j.Neo4jRepositoriesAutoConfiguration,\
 org.springframework.boot.autoconfigure.data.solr.SolrRepositoriesAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration,\
-org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.com.leven.demoplus.redis.RedisAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.com.leven.demoplus.redis.RedisRepositoriesAutoConfiguration,\
 org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration,\
 org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration,\
 org.springframework.boot.autoconfigure.elasticsearch.jest.JestAutoConfiguration,\
@@ -1093,7 +1093,7 @@ JUL、JCL、Jboss-logging、logback、log4j、log4j2、slf4j....
 
 | 日志门面  （日志的抽象层）                           | 日志实现                                     |
 | ---------------------------------------- | ---------------------------------------- |
-| ~~JCL（Jakarta  Commons Logging）~~    SLF4j（Simple  Logging Facade for Java）    **~~jboss-logging~~** | Log4j  JUL（java.util.logging）  Log4j2  **Logback** |
+| ~~JCL（Jakarta  Commons Logging）~~    SLF4j（Simple  Logging Facade for Java）    **~~jboss-logging~~** | Log4j  JUL（java.com.leven.demoplus.util.logging）  Log4j2  **Logback** |
 
 左边选一个门面（抽象层）、右边来选一个实现；
 
@@ -1644,8 +1644,8 @@ Simple expressions:（表达式语法）
 #messages : methods for obtaining externalized messages inside variables expressions, in the same way as they would be obtained using #{…} syntax.
 #uris : methods for escaping parts of URLs/URIs
 #conversions : methods for executing the configured conversion service (if any).
-#dates : methods for java.util.Date objects: formatting, component extraction, etc.
-#calendars : analogous to #dates , but for java.util.Calendar objects.
+#dates : methods for java.com.leven.demoplus.util.Date objects: formatting, component extraction, etc.
+#calendars : analogous to #dates , but for java.com.leven.demoplus.util.Calendar objects.
 #numbers : methods for formatting numeric objects.
 #strings : methods for String objects: contains, startsWith, prepending/appending, etc.
 #objects : methods for objects in general.
@@ -1699,7 +1699,7 @@ Special tokens:
 
 ## 4、SpringMVC自动配置
 
-https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications
+https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/com.leven.demoplus.reference/htmlsingle/#boot-features-developing-web-applications
 
 ### 1. Spring MVC auto-configuration
 
@@ -3364,7 +3364,7 @@ systemctl stop docker
 
 | 操作 | 命令                                            | 说明                                                     |
 | ---- | ----------------------------------------------- | -------------------------------------------------------- |
-| 检索 | docker  search 关键字  eg：docker  search redis | 我们经常去docker  hub上检索镜像的详细信息，如镜像的TAG。 |
+| 检索 | docker  search 关键字  eg：docker  search com.leven.demoplus.redis | 我们经常去docker  hub上检索镜像的详细信息，如镜像的TAG。 |
 | 拉取 | docker pull 镜像名:tag                          | :tag是可选的，tag表示标签，多为软件的版本，默认是latest  |
 | 列表 | docker images                                   | 查看所有本地镜像                                         |
 | 删除 | docker rmi image-id                             | 删除指定的本地镜像                                       |
@@ -3406,7 +3406,7 @@ service firewalld stop：关闭防火墙
 docker logs container-name/container-id
 
 更多命令参看
-https://docs.docker.com/engine/reference/commandline/docker/
+https://docs.docker.com/engine/com.leven.demoplus.reference/commandline/docker/
 可以参考每一个镜像的文档
 
 ````
