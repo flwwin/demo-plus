@@ -1,0 +1,18 @@
+##  docker 常用命令
+
+1：启动docker
+
+2：
+
+docker images
+docker search xx
+docker pull xx
+docker ps -a
+docker rm xx
+docker exec -it 容器id /bin/bash 进入容器
+exit 退出容器
+
+1.启动docker,命令:systemctl start docker
+2.验证docker是否启动成功,命令:dockers version
+3.重启docker,命令:systemctl restart docker
+4.关闭docker,命令:systemctl stop docker END
