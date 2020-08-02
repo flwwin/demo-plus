@@ -23,7 +23,7 @@ public class CompleteFutrueDemo {
         String s = future.get();
         System.out.println(s);
 
-        // 通过CompletetableFuture来控制多个异步操作
+        // 通过CompletableFuture来控制多个异步操作
         new Thread(() -> {
             try {
                 System.out.println("future.get(t1) = " + future.get());
@@ -98,7 +98,7 @@ public class CompleteFutrueDemo {
             return "!";
         });
 
-       // 使用allOf方法
+       // 使用allOf方法 f3 f4 f5 都执行结束之前一直阻塞
         CompletableFuture.allOf(f3, f4, f5).join();
         //all.get();
 
