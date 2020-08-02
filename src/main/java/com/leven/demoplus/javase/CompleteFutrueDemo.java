@@ -1,15 +1,20 @@
 package com.leven.demoplus.javase;
 
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 异步编程：CompletableFuture
  */
 public class CompleteFutrueDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        /*//1:把CompleteFutrue 当Future使用
+        //1:把CompleteFutrue 当Future使用
         CompletableFuture<String> future = new CompletableFuture<>();
         Executors.newFixedThreadPool(10).submit(() -> {
             future.complete("hello");
@@ -113,18 +118,18 @@ public class CompleteFutrueDemo {
 
         String s2 = CompletableFuture.supplyAsync(() -> "hello").thenApplyAsync(v -> v + "world").join();
 
-        CompletableFuture.supplyAsync(()->"hello").thenAcceptAsync(v-> System.out.println(v+"hello"));*/
+        CompletableFuture.supplyAsync(()->"hello").thenAcceptAsync(v-> System.out.println(v+"hello"));
 
-       /* final String endStr = CompletableFuture.supplyAsync(() -> "hello")
+        final String endStr = CompletableFuture.supplyAsync(() -> "hello")
                 .thenCombine(CompletableFuture.supplyAsync(() -> "world"), (str1, str2) -> str1 + str2)
                 .thenCombineAsync(CompletableFuture.supplyAsync(() -> "!!!"), (str3, str4) -> str3 + str4).join();
 
-        System.out.println("endStr = " + endStr);*/
+        System.out.println("endStr = " + endStr);
 
 
         Object errStr = CompletableFuture.supplyAsync(() -> {
             throw new RuntimeException("error1");
-        }).thenApplyAsync((s) -> {
+        }).thenApplyAsync((s3) -> {
             throw new RuntimeException("error2");
         }).exceptionally((e) -> {
             return e.getMessage();
