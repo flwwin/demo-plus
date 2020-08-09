@@ -1,4 +1,4 @@
-package com.leven.demoplus.dataconsumer;
+package com.leven.demoplus.Design.dataconsumer;
 
 import org.springframework.stereotype.Component;
 
