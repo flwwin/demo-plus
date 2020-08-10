@@ -14,6 +14,7 @@ public class EventManager {
 
 
     @PostConstruct
+    //todo events可以动态配置化
     public void init(){
         events = Maps.newHashMap();
         List arrayList = new ArrayList();
