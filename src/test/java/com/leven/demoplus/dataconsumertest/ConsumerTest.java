@@ -1,6 +1,6 @@
 package com.leven.demoplus.dataconsumertest;
 
-import com.leven.demoplus.Design.dataconsumer.ConsumeData;
+import com.leven.demoplus.devstg.dataconsumer.ConsumeData;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

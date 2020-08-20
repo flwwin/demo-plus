@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order
-public class SecondFilter extends AbstractFilter {
+public class FirstFilter extends AbstractFilter{
     @Override
     public void doFilter(RequextContext req, RespondContext rep, IFilterChain chain) {
-        System.out.println("secondfilter");
+        System.out.println("firstFilter");
     }
 }

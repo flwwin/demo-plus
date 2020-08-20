@@ -1,6 +1,6 @@
 package com.leven.demoplus.controller;
 
-import com.leven.demoplus.Design.dataconsumer.ConsumeData;
+import com.leven.demoplus.devstg.dataconsumer.ConsumeData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

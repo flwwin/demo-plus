@@ -59,6 +59,7 @@ public class RedisDemo {
         map.put("email", "abc@163.com");
         jedis.hmset("hash2", map);//同时将多个 field-value (域-值)对设置到哈希表 key 中。
         List<String> result = jedis.hmget("hash2", "telphone", "email");
+        jedis.hgetAll("hash2");//huoqusouyou
         System.out.println("result = " + result);
 
         System.out.println("-------------------zset---------------------");

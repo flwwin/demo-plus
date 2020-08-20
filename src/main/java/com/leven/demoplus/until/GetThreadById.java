@@ -1,4 +1,4 @@
-package com.leven.demoplus.util;
+package com.leven.demoplus.until;
 
 public class GetThreadById {
     /**
