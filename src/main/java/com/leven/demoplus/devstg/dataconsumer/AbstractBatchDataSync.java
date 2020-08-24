@@ -83,12 +83,25 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
 
     @Override
     public void submit(T data) {
-        this.dataQueue.offer(data);
+        if (isStop){
+            //日志
+        }
+
+       /*
+        1)add(anObject):把anObject加到BlockingQueue里,即如果BlockingQueue可以容纳,则返回true,否则报异常
+        2)offer(anObject):表示如果可能的话,将anObject加到BlockingQueue里,即如果BlockingQueue可以容纳,则返回true,否则返回false.
+        3)put(anObject):把anObject加到BlockingQueue里,如果BlockQueue没有空间,则调用此方法的线程被阻断直到BlockingQueue里面有空间再继续.
+        */
+        try {
+            this.dataQueue.put(data);
+        } catch (InterruptedException e) {
+           //日志 日志打点监控
+        }
     }
 
     @Override
     public void close() throws IOException {
-        System.out.println("关闭中。。。");
+        System.out.println("停机中....");
         this.isStop = true;
         if (null != taskExecutor) {
             taskExecutor.shutdown();
@@ -113,7 +126,7 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
                 // consumer dadta
                 while (!isStop) {
 
-                    T data = dataQueue.poll(100, TimeUnit.MILLISECONDS);
+                    T data = dataQueue.poll(100, TimeUnit.MILLISECONDS); //poll不会阻塞，take会阻塞
                     if (null != data) {
                         list.add(data);
                     }

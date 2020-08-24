@@ -9,5 +9,5 @@ public interface IHandBatchData<T> extends Closeable {
 
     void handMultiData(List<T> datas);
 
-    void submit(T data);
+    void submit(T data) throws InterruptedException;
 }
