@@ -35,5 +35,11 @@ public abstract class KafkaConsumerRunable implements Runnable, Cloneable, Close
 
     abstract void handMsg();
 
+    public KafkaConsumer getConsumer() {
+        return consumer;
+    }
 
+    public void setConsumer(KafkaConsumer consumer) {
+        this.consumer = consumer;
+    }
 }

@@ -17,13 +17,20 @@ public class KafkaConsumerOperator {
     private String groupId;
     private String topic;
     private ExecutorService executor;
-    private KafkaConsumerRunable kafkaConsumerStream;
+    private KafkaConsumerRunable kafkaConsumerStream; //创建时候传入
 
     private Map<String, String> propMap; //补充配置
     private int kafkaVersion; //kafka的版本
+    private Boolean kafkaSwitch; //kafka消费开关
+
     //初始化方法
     public void init() {
-        initKafka();
+        if (kafkaSwitch){
+            //todo 日志
+        }
+        if (kafkaVersion>8){
+            initKafka();//针对9以上版本
+        }
     }
 
     private void initKafka() {

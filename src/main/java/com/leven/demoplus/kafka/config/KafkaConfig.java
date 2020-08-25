@@ -1,5 +1,7 @@
 package com.leven.demoplus.kafka.config;
 
+import com.leven.demoplus.devstg.dataconsumer.AbstractBatchDataSync;
+import com.leven.demoplus.kafka.consumer.AbstractKafkaStatConsumer;
 import com.leven.demoplus.kafka.consumer.KafkaConsumerOperator;
 import com.leven.demoplus.kafka.consumer.RealBatchDataSync;
 import com.leven.demoplus.kafka.consumer.RealKafkaConsumer;
@@ -7,6 +9,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * 1: 通过配置类，对象注入到IOC中
+ */
 @Configuration
 public class KafkaConfig {
 
@@ -26,14 +31,14 @@ public class KafkaConfig {
     }
 
     @Bean(value = "kafkaConsumer")
-    public RealKafkaConsumer creatActualKafkaConsumer() {
+    public AbstractKafkaStatConsumer creatActualKafkaConsumer() {
         RealKafkaConsumer consumer = new RealKafkaConsumer();
         consumer.setDataSync(creatRealBatchDataSync());
         return consumer;
     }
 
     @Bean(value = "realBatchDataSync")
-    public RealBatchDataSync creatRealBatchDataSync() {
+    public AbstractBatchDataSync creatRealBatchDataSync() {
         RealBatchDataSync dataSync = new RealBatchDataSync();
         dataSync.setBatchSize(kafkaConf.getBatchSize());
         dataSync.setQueueSize(kafkaConf.getQueueSize());
