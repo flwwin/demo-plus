@@ -1,4 +1,4 @@
-package com.leven.demoplus.oom;
+package com.leven.demoplus.jvm.oom;
 
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
