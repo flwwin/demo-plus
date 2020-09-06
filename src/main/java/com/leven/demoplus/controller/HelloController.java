@@ -10,13 +10,15 @@ import java.util.List;
 
 @Controller
 public class HelloController {
-  @Autowired
-  ConsumeData consumeData;
+  /*@Autowired
+  ConsumeData consumeData;*/
 
   @RequestMapping("/hello")
   public void sayHello() {
-    List list = new ArrayList();
+    /*List list = new ArrayList();
     list.add(111);
-    consumeData.submit(list);
+    consumeData.submit(list);*/
+
+
   }
 }
