@@ -1,4 +1,4 @@
-package com.leven.demoplus.oom;
+package com.leven.demoplus.jvm.oom;
 
 /**
  * 堆内存溢出，这是工作中最常见的OOM故障

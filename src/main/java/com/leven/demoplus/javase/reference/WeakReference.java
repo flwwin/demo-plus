@@ -1,4 +1,4 @@
-package com.leven.demoplus.reference;
+package com.leven.demoplus.javase.reference;
 
 import java.lang.ref.ReferenceQueue;
 

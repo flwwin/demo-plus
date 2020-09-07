@@ -83,5 +83,6 @@ public class RedisDemo {
         Set<String> s1 = jedis.zrange("zset01", 0, -1);
         System.out.println("s1 = " + s1);
 
+        //常见使用的命令 scan
     }
 }

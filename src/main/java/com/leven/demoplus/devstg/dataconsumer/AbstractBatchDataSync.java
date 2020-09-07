@@ -46,7 +46,7 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
             return;
         }
 
-        dataQueue = new LinkedBlockingQueue<T>(batchSize);
+        dataQueue = new LinkedBlockingQueue<T>(2000); //队列大小必须根据业务合理设置，Offer不然超过容量就不丢掉数据
 
         // new thread to consume
         taskExecutor =

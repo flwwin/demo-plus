@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Component
 @Data
-public class FilterFactory {
+public class ChainFactory {
     private List<AbstractFilter> filterList;
     private Map<String,AbstractFilter> filterMap;
     private LinkedFilterChain<RequextContext,RespondContext> linkedFilterChain;
@@ -21,7 +21,7 @@ public class FilterFactory {
     @Value("chain.incloud.chain")
     private List<String> incloudChain; //配置执行链
 
-    public FilterFactory(List<AbstractFilter> filters) {
+    /*public ChainFactory(List<AbstractFilter> filters) {
         filterList = filters;
 
     }
@@ -49,5 +49,5 @@ public class FilterFactory {
 
     public LinkedFilterChain<RequextContext,RespondContext> getInstance() throws CloneNotSupportedException {
         return linkedFilterChain.clone();
-    }
+    }*/
 }

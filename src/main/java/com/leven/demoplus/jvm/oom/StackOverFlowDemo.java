@@ -1,4 +1,4 @@
-package com.leven.demoplus.oom;
+package com.leven.demoplus.jvm.oom;
 
 /**
  * OMM 之 java.lang. StackOverflowError 栈空间溢出，栈管运行，每个方法就是一个栈帧，循环调用方法，会出现这种问题

@@ -21,4 +21,10 @@ public class ConsumeData extends AbstractBatchDataSync {
     System.out.println(datas);
   }
 
+  @Override
+  public void handData(Object data) {
+
+  }
+
+
 }
