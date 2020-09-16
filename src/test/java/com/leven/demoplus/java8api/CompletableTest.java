@@ -1,29 +1,61 @@
 package com.leven.demoplus.java8api;
 
+import com.google.common.collect.Lists;
+import com.sun.xml.internal.ws.util.CompletedFuture;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @SpringBootTest
+@Slf4j
 public class CompletableTest {
 
+    private static final Executor ES = new ThreadPoolExecutor(10
+            , 10
+            , 0L
+            , TimeUnit.MILLISECONDS
+            , new LinkedBlockingQueue<>(10)
+            , Executors.defaultThreadFactory()
+            , new RejectedExecutionHandler() {
+        @Override
+        public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+            log.debug("has thread rejectedExecution");
+        }
+    });
+
     @Test
-    void test01() throws ExecutionException, InterruptedException {
-        CompletableFuture<String> future = new CompletableFuture<>();
+    void test01() throws Exception {
 
-        Executors.newFixedThreadPool(10).submit(() -> {
-            //future.complete("hello");
-        });
+        CopyOnWriteArrayList<CompletableFuture<String>> list = Lists.newCopyOnWriteArrayList();
+        for (int i = 0; i < 10; i++) {
+            CompletableFuture<String> future = new CompletableFuture<>();
 
-        String s = future.get();
-        System.out.println(s);
+            int finalI = i;
+            CompletableFuture.runAsync(() -> {
+                if (finalI == 5) {
+                    try {
+                        TimeUnit.SECONDS.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                future.complete("hello");
+                list.add(future);
+            }, ES);
+        }
+
+        for (CompletableFuture<String> f : list) {
+            System.out.println(f.get());
+        }
     }
 
     //组合
@@ -61,7 +93,7 @@ public class CompletableTest {
         CompletableFuture<Object> f2 = CompletableFuture.supplyAsync(() -> "Hello")
                 .thenApplyAsync(res -> res + "World")
                 .thenApplyAsync(res -> {
-                   // throw new RuntimeException("error");
+                    // throw new RuntimeException("error");
                     return res;
                 })
                 .handleAsync((res, err) -> {
@@ -104,6 +136,61 @@ public class CompletableTest {
                 .collect(Collectors.toList());
 
         System.out.println(r);
+    }
+
+    /**
+     * 实现多个线程异步，然后等待多线程处理结果。
+     */
+    @Test
+    void test06(){
+        List<Integer> asList = Arrays.asList(1, 2, 3, 4, 5);
+        List<CompletableFuture<String>> resList = asList.stream()
+                .map(s -> CompletableFuture.supplyAsync(() -> sayHello(s), ES))
+                .collect(Collectors.toList());
+
+
+        CompletableFuture.allOf(resList.toArray(new CompletableFuture[0])).join()  ;
+        resList.stream().forEach(s-> {
+            try {
+                System.out.println(s.get());
+            } catch (InterruptedException e) {
+
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private String sayHello(int i){
+        if (i==5){
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return String.valueOf(i);
+    }
+
+    //  flatMap的操作
+
+    //合并两个list
+    @Test
+    void test07(){
+           String[] a = {"h","e","e","l","o"};
+        String[] b = {"w","o","r","l","d"};
+
+        final List<String[]> strings = Arrays.asList(a, b);
+
+        System.out.println("strings before = "+strings);
+
+        List<String> collect = strings.stream().flatMap(Arrays::stream).collect(Collectors.toList());
+
+        System.out.println("collect after = " + collect);
+
+        /*合并多个list*/
+        //List<AClass> aClassListResult = map.values().stream().flatMap(listContainer -> listContainer.getLst().stream()).collect(Collectors.toList());
+
     }
 
 }

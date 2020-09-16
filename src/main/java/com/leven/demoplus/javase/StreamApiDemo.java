@@ -44,16 +44,7 @@ public class StreamApiDemo {
         strings = strings.stream().distinct().collect(Collectors.toList());
         System.out.println(strings.toString());
 
-       /* String[] a = {"h","e","e","l","o"};
-        String[] b = {"w","o","r","l","d"};
 
-        final List<String[]> strings = Arrays.asList(a, b);
-
-        System.out.println("strings before = " + strings);
-
-        List<String> collect = strings.stream().flatMap(Arrays::stream).collect(Collectors.toList());
-
-        System.out.println("collect after = " + collect);*/
        stream();
     }
 
