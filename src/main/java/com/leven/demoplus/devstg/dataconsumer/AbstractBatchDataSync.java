@@ -1,7 +1,5 @@
 package com.leven.demoplus.devstg.dataconsumer;
 
-import lombok.Data;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +10,11 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 数据消费类:
- * 1:批量异步数据处理，提升性能
+ * 1: 批量异步数据处理，提升性能
  * 2：实现优雅停机，停机数据不丢失
  * 3：继承该抽象类（记得初始化）
  * 4: 生产
  */
-@Data
 public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
     private LinkedBlockingQueue<T> dataQueue;
     private int batchSize; // 数据大小
@@ -57,12 +54,20 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
         th.start();
     }
 
-    public LinkedBlockingQueue getDataQueue() {
-        return dataQueue;
+    public int getQueueSize() {
+        return queueSize;
     }
 
-    public void setDataQueue(LinkedBlockingQueue dataQueue) {
-        this.dataQueue = dataQueue;
+    public void setQueueSize(int queueSize) {
+        this.queueSize = queueSize;
+    }
+
+    public int getMaxWaitMills() {
+        return maxWaitMills;
+    }
+
+    public void setMaxWaitMills(int maxWaitMills) {
+        this.maxWaitMills = maxWaitMills;
     }
 
     public int getBatchSize() {
@@ -126,7 +131,7 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
                 // consumer dadta
                 while (!isStop) {
 
-                    T data = dataQueue.poll(100, TimeUnit.MILLISECONDS); //poll不会阻塞，take会阻塞
+                    T data = dataQueue.poll(100, TimeUnit.MILLISECONDS); //poll不会阻塞(可以计时)，take会阻塞
                     if (null != data) {
                         list.add(data);
                     }

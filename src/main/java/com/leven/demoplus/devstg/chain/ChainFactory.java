@@ -3,25 +3,31 @@ package com.leven.demoplus.devstg.chain;
 import com.leven.demoplus.devstg.chain.enity.RequextContext;
 import com.leven.demoplus.devstg.chain.enity.RespondContext;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Component
 @Data
-public class ChainFactory {
+public class FilterFactory {
     private List<AbstractFilter> filterList;
-    private Map<String,AbstractFilter> filterMap;
+    private Map<String,AbstractFilter> filterMap = new HashMap<>();
     private LinkedFilterChain<RequextContext,RespondContext> linkedFilterChain;
 
     @Value("chain.incloud.chain")
     private List<String> incloudChain; //配置执行链
 
-    /*public ChainFactory(List<AbstractFilter> filters) {
+    //可以有两种方法注入 1： @Autowired  2：构造器注入
+    @Autowired(required = false)
+    private List<AbstractFilter> filters;
+
+    public FilterFactory(List<AbstractFilter> filters) {
         filterList = filters;
 
     }
@@ -49,5 +55,5 @@ public class ChainFactory {
 
     public LinkedFilterChain<RequextContext,RespondContext> getInstance() throws CloneNotSupportedException {
         return linkedFilterChain.clone();
-    }*/
+    }
 }

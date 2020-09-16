@@ -5,7 +5,8 @@ import com.leven.demoplus.kafka.consumer.AbstractKafkaStatConsumer;
 import com.leven.demoplus.kafka.consumer.KafkaConsumerOperator;
 import com.leven.demoplus.kafka.consumer.RealBatchDataSync;
 import com.leven.demoplus.kafka.consumer.RealKafkaConsumer;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,9 +14,10 @@ import org.springframework.context.annotation.Configuration;
  * 1: 通过配置类，对象注入到IOC中
  */
 @Configuration
+@ConditionalOnExpression(value = "false")
 public class KafkaConfig {
 
-    @Value("${kafkaConfig}")
+    @Autowired
     private kafkaConfVO kafkaConf;
 
     @Bean(value = "kafkaConsumer", initMethod = "init"/*,destroyMethod = "close"*/)
