@@ -3,6 +3,7 @@ package com.leven.demoplus.devstg.dataconsumer;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
 import java.util.List;
 
 /** 消费数据 */
@@ -18,7 +19,10 @@ public class ConsumeData extends AbstractBatchDataSync {
   @Override
   public void handMultiData(List datas) {
     // 处理数据逻辑
-    System.out.println(datas);
+    if (datas.size()!=0){
+
+      System.out.println(datas);
+    }
   }
 
   @Override
