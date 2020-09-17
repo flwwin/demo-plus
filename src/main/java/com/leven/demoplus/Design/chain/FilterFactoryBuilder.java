@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class FilterFactory {
+public class FilterFactoryBuilder {
     //可以动态配置一些链
 
     public List<IReqFilter> filterChain;
 
-    public FilterFactory(List<IReqFilter> filterChains) {
+    public FilterFactoryBuilder(List<IReqFilter> filterChains) {
         this.filterChain = filterChains;
     }
 

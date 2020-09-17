@@ -2,6 +2,10 @@
 
 ####  1.先用top命令找出CPU占用过高的进程
 
+-load average 系统的负载情况
+
+按数字键 1 可以看每个逻辑cpu的负载情况
+
 ![](..\..\image\CPU占用过高\top命令查看cpu占用.png)
 
 ####  2. ps -ef |grep java|grep -v grep或者jps 命令找出那个进程的问题

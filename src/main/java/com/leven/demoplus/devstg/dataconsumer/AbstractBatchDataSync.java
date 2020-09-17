@@ -1,7 +1,5 @@
 package com.leven.demoplus.devstg.dataconsumer;
 
-import lombok.Data;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +10,11 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 数据消费类:
- * 1:批量异步数据处理，提升性能
+ * 1: 批量异步数据处理，提升性能
  * 2：实现优雅停机，停机数据不丢失
  * 3：继承该抽象类（记得初始化）
  * 4: 生产
  */
-@Data
 public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
     private LinkedBlockingQueue<T> dataQueue;
     private int batchSize; // 数据大小
@@ -57,12 +54,20 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
         th.start();
     }
 
-    public LinkedBlockingQueue getDataQueue() {
-        return dataQueue;
+    public int getQueueSize() {
+        return queueSize;
     }
 
-    public void setDataQueue(LinkedBlockingQueue dataQueue) {
-        this.dataQueue = dataQueue;
+    public void setQueueSize(int queueSize) {
+        this.queueSize = queueSize;
+    }
+
+    public int getMaxWaitMills() {
+        return maxWaitMills;
+    }
+
+    public void setMaxWaitMills(int maxWaitMills) {
+        this.maxWaitMills = maxWaitMills;
     }
 
     public int getBatchSize() {
@@ -83,12 +88,25 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
 
     @Override
     public void submit(T data) {
-        this.dataQueue.offer(data);
+        if (isStop){
+            //日志
+        }
+
+       /*
+        1)add(anObject):把anObject加到BlockingQueue里,即如果BlockingQueue可以容纳,则返回true,否则报异常
+        2)offer(anObject):表示如果可能的话,将anObject加到BlockingQueue里,即如果BlockingQueue可以容纳,则返回true,否则返回false.
+        3)put(anObject):把anObject加到BlockingQueue里,如果BlockQueue没有空间,则调用此方法的线程被阻断直到BlockingQueue里面有空间再继续.
+        */
+        try {
+            this.dataQueue.put(data);
+        } catch (InterruptedException e) {
+           //日志 日志打点监控
+        }
     }
 
     @Override
     public void close() throws IOException {
-        System.out.println("关闭中。。。");
+        System.out.println("停机中....");
         this.isStop = true;
         if (null != taskExecutor) {
             taskExecutor.shutdown();
@@ -113,7 +131,7 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
                 // consumer dadta
                 while (!isStop) {
 
-                    T data = dataQueue.poll(100, TimeUnit.MILLISECONDS);
+                    T data = dataQueue.poll(100, TimeUnit.MILLISECONDS); //poll不会阻塞(可以计时)，take会阻塞
                     if (null != data) {
                         list.add(data);
                     }

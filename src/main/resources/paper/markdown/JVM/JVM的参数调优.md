@@ -98,3 +98,8 @@
   ![](..\..\image\新生代和老年代内存占比.png)
 
 - -xx:MaxTenuringThreaShold  对象在新生代可以接受多少次gc次数，取值在0-15之间
+- MaxGCPauseMillis 
+JVM调优主要就是调整下面两个指标
+
+停顿时间：垃圾收集器做垃圾回收中断应用执行的时间。-XX:MaxGCPauseMillis
+吞吐量：垃圾收集的时间和总时间的占比：1/(1+n),吞吐量为1-1/(1+n)。-XX:GCTimeRatio=n
