@@ -1,4 +1,4 @@
-package com.leven.demoplus.springdemo.applicationListenerdemo.conditionbean;
+package com.leven.demoplus.spring.applicationListenerdemo.conditionbean;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.stereotype.Component;

@@ -10,7 +10,7 @@
     <groupId>com.leven</groupId>
     <artifactId>demo-plus-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo-plus-app</name>
+    <name>demo-plus-service</name>
     <description>app</description>
 
     <properties>

@@ -1,5 +1,6 @@
 package com.leven.demoplus.devstg.dataconsumer;
 
+import com.leven.demoplus.enity.User;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -8,7 +9,7 @@ import java.util.List;
 
 /** 消费数据 */
 @Component
-public class ConsumeData extends AbstractBatchDataSync {
+public class ConsumeData extends AbstractBatchDataSync<User> {
 
   @PostConstruct
   @Override
@@ -17,7 +18,7 @@ public class ConsumeData extends AbstractBatchDataSync {
   }
 
   @Override
-  public void handMultiData(List datas) {
+  public void handMultiData(List<User> datas) {
     // 处理数据逻辑
     if (datas.size()!=0){
 
@@ -26,7 +27,7 @@ public class ConsumeData extends AbstractBatchDataSync {
   }
 
   @Override
-  public void handData(Object data) {
+  public void handData(User data) {
 
   }
 

@@ -10,18 +10,7 @@ import java.util.Iterator;
 
 public abstract class KafkaConsumerRunable implements Runnable, Cloneable, Closeable {
 
-    private KafkaConsumer consumer;
-
-
-    @Override
-    public void run() {
-        ConsumerRecords poll = consumer.poll(Duration.ofMillis(100));
-        Iterator iterator = poll.iterator();
-        while (iterator.hasNext()) {
-            Object next = iterator.next();
-            handMsg();
-        }
-    }
+    public KafkaConsumer<Byte[],Byte[]> consumer;
 
     @Override
     protected KafkaConsumerRunable clone() {
@@ -33,13 +22,13 @@ public abstract class KafkaConsumerRunable implements Runnable, Cloneable, Close
         return null;
     }
 
-    abstract void handMsg();
+    abstract void handMsg(Byte[] data);
 
-    public KafkaConsumer getConsumer() {
+    public KafkaConsumer<Byte[],Byte[]> getConsumer() {
         return consumer;
     }
 
-    public void setConsumer(KafkaConsumer consumer) {
+    public void setConsumer(KafkaConsumer<Byte[],Byte[]> consumer) {
         this.consumer = consumer;
     }
 }

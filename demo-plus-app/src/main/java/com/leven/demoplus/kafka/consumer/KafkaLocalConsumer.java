@@ -1,6 +1,7 @@
 package com.leven.demoplus.kafka.consumer;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -9,10 +10,11 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.*;
 
-public class KafkaConsumerOperator {
+@Slf4j
+public class KafkaLocalConsumer {
 
     @Value("${threadCount}")
-    private int treadCount;
+    private int treadCount = 10;
 
     private String groupId;
     private String topic;
@@ -26,19 +28,19 @@ public class KafkaConsumerOperator {
     //初始化方法
     public void init() {
         if (kafkaSwitch){
-            //todo 日志
+            log.info("kafka inint switch is close|{}",kafkaSwitch);
         }
         if (kafkaVersion>8){
-            initKafka();//针对9以上版本
+            initKafkaSetting();//针对9以上版本
         }
     }
 
-    private void initKafka() {
+    private void initKafkaSetting() {
         //创建一个properties
         Properties properties = createKafkaConfProperties();
         initThread();
         for (int i = 0; i < treadCount; i++) {
-            KafkaConsumer kafkaConsumer = new KafkaConsumer(properties);
+            KafkaConsumer<Byte[],Byte[]> kafkaConsumer = new KafkaConsumer<Byte[],Byte[]>(properties);
             kafkaConsumer.subscribe(Collections.singletonList(topic));
             KafkaConsumerRunable runable = kafkaConsumerStream.clone();
             runable.setConsumer(kafkaConsumer);
@@ -66,6 +68,10 @@ public class KafkaConsumerOperator {
         return properties;
     }
 
+    /**
+     * 补充kafka配置的其他参数
+     * @param properties
+     */
     private void appendConf(Properties properties) {
         if (null != properties && null != propMap) {
             properties.putAll(propMap);

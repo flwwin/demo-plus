@@ -79,12 +79,10 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
     }
 
     @Override
-    public void handData(T data) {
-    }
+    public abstract void handData(T data);
 
     @Override
-    public void handMultiData(List<T> datas) {
-    }
+    public abstract void handMultiData(List<T> datas);
 
     @Override
     public void submit(T data) {
