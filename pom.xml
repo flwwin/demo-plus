@@ -11,7 +11,8 @@
     <groupId>com.leven</groupId>
     <artifactId>demoplus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demoplus</name>
+    <packaging>pom</packaging>
+    <name>com-leven-demoplus</name>
 
     <properties>
         <java.version>1.8</java.version>
