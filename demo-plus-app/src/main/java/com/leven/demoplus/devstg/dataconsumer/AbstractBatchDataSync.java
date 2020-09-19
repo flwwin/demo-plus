@@ -1,5 +1,7 @@
 package com.leven.demoplus.devstg.dataconsumer;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  * 3：继承该抽象类（记得初始化）
  * 4: 生产
  */
+@Slf4j
 public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
     private LinkedBlockingQueue<T> dataQueue;
     private int batchSize; // 数据大小
@@ -78,10 +81,8 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
         this.batchSize = batchSize;
     }
 
-    @Override
     public abstract void handData(T data);
 
-    @Override
     public abstract void handMultiData(List<T> datas);
 
     @Override
@@ -104,7 +105,7 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
 
     @Override
     public void close() throws IOException {
-        System.out.println("停机中....");
+        log.info("停机中。。。，batchSync stoping");
         this.isStop = true;
         if (null != taskExecutor) {
             taskExecutor.shutdown();

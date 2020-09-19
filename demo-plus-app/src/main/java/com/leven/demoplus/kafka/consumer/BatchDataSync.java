@@ -1,16 +1,16 @@
 package com.leven.demoplus.kafka.consumer;
 
 import com.leven.demoplus.devstg.dataconsumer.AbstractBatchDataSync;
-import com.leven.demoplus.enity.KafkaConsumeData;
+import com.leven.demoplus.enity.DataLine;
 
 import java.util.List;
 
 /**
  * kafka消费批处理
  */
-public class BatchDataSync extends AbstractBatchDataSync<String> {
+public class BatchDataSync extends AbstractBatchDataSync<DataLine> {
     @Override
-    public void handMultiData(List<String> datas) {
+    public void handMultiData(List<DataLine> datas) {
         /*
           1：datas为从kafka消费的数据
           2：该方法在父类中新启动一个线程持续处理消费数据
@@ -20,7 +20,7 @@ public class BatchDataSync extends AbstractBatchDataSync<String> {
     }
 
     @Override
-    public void handData(String data) {
+    public void handData(DataLine data) {
 
     }
 }

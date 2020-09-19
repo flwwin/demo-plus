@@ -1,6 +1,7 @@
 package com.leven.demoplus.kafka.consumer;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +14,7 @@ import java.util.Properties;
 import java.util.concurrent.*;
 
 @Slf4j
+@Data
 public class KafkaLocalConsumer implements Closeable {
 
     @Value("${threadCount}")
@@ -24,13 +26,13 @@ public class KafkaLocalConsumer implements Closeable {
     private KafkaConsumerRunable kafkaConsumerStream; //创建时候传入
 
     private Map<String, String> propMap; //补充配置
-    private int kafkaVersion; //kafka的版本
-    private boolean kafkaSwitch; //kafka消费开关
+    private int kafkaVersion; //kafka的版本8和8以后的版本不一样
+    private boolean initSwitch; //初始化开关
 
     //初始化方法
     public void init() {
-        if (kafkaSwitch){
-            log.info("kafka inint switch is close|{}",kafkaSwitch);
+        if (initSwitch){
+            log.info("kafka inint switch is close|{}",initSwitch);
         }
         if (kafkaVersion>8){
             initKafkaSetting();//针对9以上版本
@@ -39,7 +41,20 @@ public class KafkaLocalConsumer implements Closeable {
 
     @Override
     public void close() throws IOException {
-        //todo 关闭资源
+        if (kafkaConsumerStream != null){
+            kafkaConsumerStream.close();
+        }
+        if (null != executor){
+            executor.shutdown();
+            try {
+                if (!executor.awaitTermination(2000,TimeUnit.MILLISECONDS)){
+
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private void initKafkaSetting() {
@@ -48,9 +63,14 @@ public class KafkaLocalConsumer implements Closeable {
         initThreadExecutor();
         //多线程批量处理
         for (int i = 0; i < treadCount; i++) {
-            KafkaConsumer<Byte[],Byte[]> kafkaConsumer = new KafkaConsumer<Byte[],Byte[]>(properties);
+            KafkaConsumer<byte[],byte[]> kafkaConsumer = new KafkaConsumer<byte[],byte[]>(properties);
             kafkaConsumer.subscribe(Collections.singletonList(topic));
-            KafkaConsumerRunable runable = kafkaConsumerStream.clone();
+            KafkaConsumerRunable runable = null;
+            try {
+                runable = kafkaConsumerStream.clone();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
             if (null == runable){
                 throw new NullPointerException("kafkaConsumerStream is null");
             }
@@ -87,53 +107,5 @@ public class KafkaLocalConsumer implements Closeable {
         if (null != properties && null != propMap) {
             properties.putAll(propMap);
         }
-    }
-
-    public int getTreadCount() {
-        return treadCount;
-    }
-
-    public void setTreadCount(int treadCount) {
-        this.treadCount = treadCount;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
-    public String getTopic() {
-        return topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
-
-    public KafkaConsumerRunable getKafkaConsumerStream() {
-        return kafkaConsumerStream;
-    }
-
-    public void setKafkaConsumerStream(KafkaConsumerRunable kafkaConsumerStream) {
-        this.kafkaConsumerStream = kafkaConsumerStream;
-    }
-
-    public Map<String, String> getPropMap() {
-        return propMap;
-    }
-
-    public void setPropMap(Map<String, String> propMap) {
-        this.propMap = propMap;
-    }
-
-    public int getKafkaVersion() {
-        return kafkaVersion;
-    }
-
-    public void setKafkaVersion(int kafkaVersion) {
-        this.kafkaVersion = kafkaVersion;
     }
 }

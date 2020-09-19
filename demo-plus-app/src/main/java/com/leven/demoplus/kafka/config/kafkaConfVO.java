@@ -19,5 +19,6 @@ public class kafkaConfVO {
     private int batchSize=100;
     private int queueSize=100;
     private int maxWaitMills=3000;
+    private boolean initSwitch;
 
 }

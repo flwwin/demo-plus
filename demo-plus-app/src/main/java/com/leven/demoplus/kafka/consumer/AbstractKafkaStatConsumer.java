@@ -1,34 +1,43 @@
 package com.leven.demoplus.kafka.consumer;
 
-import com.leven.demoplus.devstg.dataconsumer.AbstractBatchDataSync;
+import com.leven.demoplus.devstg.dataconsumer.IHandBatchData;
+import com.leven.demoplus.enity.DataLine;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
-import java.util.concurrent.TimeUnit;
+import java.util.Map;
 
 @Slf4j
+@Data
 public abstract class AbstractKafkaStatConsumer extends KafkaConsumerRunable {
 
-    private AbstractBatchDataSync<String> dataSync;
+    public String[] eventKeyConf;
+    public Map<String, IHandBatchData<DataLine>>  dataSyncMap;
 
     @Override
     void handMsg(byte[] data) {
         //提交数据
         try {
             String s = new String(data, StandardCharsets.UTF_8);
-            if (null != s){
-                dataSync.submit(s);
+            IHandBatchData<DataLine> dataSync = dataSyncMap.get(dataSyncKey());
+            if (null == dataSync){
+                return;
             }
+            DataLine dataLine = parseStrToDataLine(s);
+            dataSync.submit(dataLine);
         } catch (Exception e) {
-            log.error("hand kafka msg got error",e);
+            log.error("hand kafka msg got error", e);
         }
     }
+
+    protected DataLine parseStrToDataLine(String s){
+        //todo
+        return new DataLine();
+    };
 
     @Override
     public void close() {
@@ -41,18 +50,12 @@ public abstract class AbstractKafkaStatConsumer extends KafkaConsumerRunable {
         ConsumerRecords<byte[], byte[]> recordData = consumer.poll(2000);
         for (ConsumerRecord<byte[], byte[]> record : recordData) {
             byte[] value = record.value();
-            if (value == null || value.length<=0){
+            if (value == null || value.length <= 0) {
                 continue;
             }
             handMsg(value);
         }
     }
 
-    public AbstractBatchDataSync<String> getDataSync() {
-        return dataSync;
-    }
-
-    public void setDataSync(AbstractBatchDataSync<String> dataSync) {
-        this.dataSync = dataSync;
-    }
+   public abstract String dataSyncKey();
 }
