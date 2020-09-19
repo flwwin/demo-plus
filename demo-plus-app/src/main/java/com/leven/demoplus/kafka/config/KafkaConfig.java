@@ -1,6 +1,7 @@
 package com.leven.demoplus.kafka.config;
 
 import com.leven.demoplus.devstg.dataconsumer.AbstractBatchDataSync;
+import com.leven.demoplus.enity.KafkaConsumeData;
 import com.leven.demoplus.kafka.consumer.AbstractKafkaStatConsumer;
 import com.leven.demoplus.kafka.consumer.KafkaLocalConsumer;
 import com.leven.demoplus.kafka.consumer.BatchDataSync;
@@ -39,8 +40,8 @@ public class KafkaConfig {
         return consumer;
     }
 
-    @Bean(value = "realBatchDataSync")
-    public AbstractBatchDataSync creatRealBatchDataSync() {
+    @Bean(value = "batchDataSync")
+    public BatchDataSync creatRealBatchDataSync() {
         BatchDataSync dataSync = new BatchDataSync();
         dataSync.setBatchSize(kafkaConf.getBatchSize());
         dataSync.setQueueSize(kafkaConf.getQueueSize());

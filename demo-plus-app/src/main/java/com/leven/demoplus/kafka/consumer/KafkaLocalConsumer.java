@@ -5,13 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.*;
 
 @Slf4j
-public class KafkaLocalConsumer {
+public class KafkaLocalConsumer implements Closeable {
 
     @Value("${threadCount}")
     private int treadCount = 10;
@@ -23,7 +25,7 @@ public class KafkaLocalConsumer {
 
     private Map<String, String> propMap; //补充配置
     private int kafkaVersion; //kafka的版本
-    private Boolean kafkaSwitch; //kafka消费开关
+    private boolean kafkaSwitch; //kafka消费开关
 
     //初始化方法
     public void init() {
@@ -35,20 +37,29 @@ public class KafkaLocalConsumer {
         }
     }
 
+    @Override
+    public void close() throws IOException {
+        //todo 关闭资源
+    }
+
     private void initKafkaSetting() {
         //创建一个properties
         Properties properties = createKafkaConfProperties();
-        initThread();
+        initThreadExecutor();
+        //多线程批量处理
         for (int i = 0; i < treadCount; i++) {
             KafkaConsumer<Byte[],Byte[]> kafkaConsumer = new KafkaConsumer<Byte[],Byte[]>(properties);
             kafkaConsumer.subscribe(Collections.singletonList(topic));
             KafkaConsumerRunable runable = kafkaConsumerStream.clone();
+            if (null == runable){
+                throw new NullPointerException("kafkaConsumerStream is null");
+            }
             runable.setConsumer(kafkaConsumer);
             executor.submit(runable);
         }
     }
 
-    private void initThread() {
+    private void initThreadExecutor() {
         int curTreadCount = 1;
         if (treadCount > 1) {
             curTreadCount = treadCount;

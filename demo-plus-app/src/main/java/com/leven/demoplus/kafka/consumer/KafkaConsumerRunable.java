@@ -7,13 +7,17 @@ import java.io.Closeable;
 import java.time.Duration;
 import java.util.Iterator;
 
-
+/**
+ * kafka消费线程类
+ * 1：consumer对象在KafkaLocalConsumer初始化的时候赋值
+ * 2：具体业务子类实现handMag方法，按照业务逻辑处理数据
+ */
 public abstract class KafkaConsumerRunable implements Runnable, Cloneable, Closeable {
 
-    public KafkaConsumer<Byte[],Byte[]> consumer;
+    public KafkaConsumer<byte[],byte[]> consumer;
 
     @Override
-    protected KafkaConsumerRunable clone() {
+    protected KafkaConsumerRunable clone() throws CloneNotSupportedException {
         try {
             return (KafkaConsumerRunable) super.clone();
         } catch (CloneNotSupportedException e) {
@@ -22,13 +26,13 @@ public abstract class KafkaConsumerRunable implements Runnable, Cloneable, Close
         return null;
     }
 
-    abstract void handMsg(Byte[] data);
+    abstract void handMsg(byte[] data);
 
-    public KafkaConsumer<Byte[],Byte[]> getConsumer() {
+    public KafkaConsumer<byte[],byte[]> getConsumer() {
         return consumer;
     }
 
-    public void setConsumer(KafkaConsumer<Byte[],Byte[]> consumer) {
+    public void setConsumer(KafkaConsumer<byte[],byte[]> consumer) {
         this.consumer = consumer;
     }
 }

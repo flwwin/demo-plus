@@ -8,9 +8,9 @@ import java.util.List;
 /**
  * kafka消费批处理
  */
-public class BatchDataSync extends AbstractBatchDataSync<KafkaConsumeData> {
+public class BatchDataSync extends AbstractBatchDataSync<String> {
     @Override
-    public void handMultiData(List<KafkaConsumeData> datas) {
+    public void handMultiData(List<String> datas) {
         /*
           1：datas为从kafka消费的数据
           2：该方法在父类中新启动一个线程持续处理消费数据
@@ -20,7 +20,7 @@ public class BatchDataSync extends AbstractBatchDataSync<KafkaConsumeData> {
     }
 
     @Override
-    public void handData(KafkaConsumeData data) {
+    public void handData(String data) {
 
     }
 }
