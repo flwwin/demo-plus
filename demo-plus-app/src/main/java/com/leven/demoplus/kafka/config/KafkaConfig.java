@@ -24,7 +24,7 @@ public class KafkaConfig {
     @Autowired
     private kafkaConfVO kafkaConf;
 
-    @Bean(value = "kafkaConsumer", initMethod = "init"/*,destroyMethod = "close"*/)
+    @Bean(value = "kafkaConsumer", initMethod = "init",destroyMethod = "close")
     public KafkaLocalConsumer creatKafkaConsumerOperator() {
         KafkaLocalConsumer consumer = new KafkaLocalConsumer();
         consumer.setGroupId(kafkaConf.getGroupId());
@@ -49,7 +49,7 @@ public class KafkaConfig {
         return consumer;
     }
 
-    @Bean(value = "batchDataSync")
+    @Bean(value = "batchDataSync",initMethod = "init",destroyMethod = "close")
     public BatchDataSync creatRealBatchDataSync() {
         BatchDataSync dataSync = new BatchDataSync();
         dataSync.setBatchSize(kafkaConf.getBatchSize());
