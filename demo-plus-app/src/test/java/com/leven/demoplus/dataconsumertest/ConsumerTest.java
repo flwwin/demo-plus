@@ -17,7 +17,7 @@ public class ConsumerTest {
   void test01() throws InterruptedException {
     List list = new ArrayList();
     list.add(1);
-    consumeData.submit(list);
+    //consumeData.submit(list);
     TimeUnit.SECONDS.sleep(10);
   }
 }

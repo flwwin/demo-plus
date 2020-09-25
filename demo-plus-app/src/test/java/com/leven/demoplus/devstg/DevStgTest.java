@@ -22,7 +22,7 @@ public class DevStgTest {
     public void test02() throws InterruptedException {
         String s = "1";
         for (int i = 0; i < 1000; i++) {
-            consumerData.submit(i);
+            //consumerData.submit();
         }
         TimeUnit.SECONDS.sleep(10);
     }

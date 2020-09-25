@@ -19,6 +19,7 @@ public class CallableDemo {
 
         }
         try {
+            futureTask.get();
             System.out.println(futureTask.get());
         } catch (Exception e) {
             e.printStackTrace();
