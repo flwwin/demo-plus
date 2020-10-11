@@ -1,0 +1,57 @@
+熟悉常用设计模式：
+策略：
+责任链：   
+单例：
+装饰者：
+代理：
+观察者：
+适配器：
+外观/门面：
+ 
+研究过Mybatis3源码，熟悉sqlsession执行流程、熟悉一级缓存、二级缓存原理
+ 
+研究过Spring5注解方式启动Spring的源码，熟悉Springbean生命周期、SpringAOP底层原理、
+Spring事务底层原理、Spring循环依赖解决的原理，事务的隔离级别。
+ 
+研究过SpringMVC5的源码，可手动仿真SpringMVC框架
+ 
+研究过Springboot2的启动源码，熟悉Springboot核心设计理念，可自定义starter组件，熟悉
+@SpringBootApplication底层原理
+ 
+熟悉Java8新特性流式编程，comepletetable ，optional 等等。。。
+熟悉线程池的优化。
+ 
+熟悉常用集合（ArrayList、LinkedList、HashMap1.7、HashMap1.8、ConcurrentHashMap1.7、
+ConcurrentHashMap1.8）原理，并研究过源码 线程池源码，ThreadLoacl内存泄漏，脏数据产生得原因
+ 
+可手写二叉树、了解红黑树旋转变色规则
+ redis的集群，优化，redis的分布式锁。
+熟悉多线程（通讯、锁，CAS机制）、Java内存模型，可手写Java线程池
+ 
+熟悉Java内存结构，了解常用垃圾回收算法、垃圾回收器以及内存溢出和内存泄漏等问题
+ 
+有阻塞队列的应用生产实践。
+熟悉Zookeeper使用，了解Zookeeper工作原理，分布式锁原理、分布式集群原理、选举策略、数据最终一致性原理。
+ 
+了解MySQL中的事务隔离级别和常见的锁（共享、排它、意向、记录、间隙、临键、行锁、表锁等）
+ 
+研究过Tomcat8底层源码，可在微服务架构下优化Tomcat8
+ 
+熟悉Netty框架，了解BIO、NIO、TCP/UDP原理，了解OSI七层网络模型，了解请求粘包、拆包原因和解决方案，了解序列化机制。
+ 
+熟悉SpringCloud框架，了解服务治理、服务注册发现、服务降级、熔断、隔离等Hystrix服务保护机制的原
+理，熟悉Ribbon负载均衡、Config配置中心、Zuul网关、Swagger接口调试
+ 
+熟悉Redis淘汰策略、事务、持久化机制、分布式锁、单线程高效、自动过期、与MySQL保持一致性等原理，redis的优化
+ 
+熟悉Redis穿透、击穿、雪崩、集群、主从复制、哨兵选举、cluster分片、动态扩容、缩容、布隆过滤器等原理
+ 
+熟悉常用消息队列RabbitMQ/Kafka/RocketMQ，了解其解决分布式事务，消息幂等，顺序消费，事务消息以及
+常用工作方式等原理
+
+熟读Mybatis源码，熟悉Mybatis的执行流程，可以对Mybatis的插件进行拓展，熟悉其缓存设计结构，以及对设计模式在项目中的实际   应用。
+熟悉常用的设计模式，责任链，动态代理模式，建造者模式，抽象类模式，观察者模式，知道这些模式在项目中如何更好的应用。
+熟悉PB协议，JOSN协议
+熟悉项目的优化，有项目优化的经验。可以代码，jvm，网络传输，缓存，数据库，多角度优化项目。提高项目的处理效率。
+熟悉kafka，redis
+熟悉线程池，duobbo线程吃，jedis线程池调优，熟悉常用的缓存框架（guava,coffe）,熟悉mysql的索引原理，存储引擎，sql优化等
