@@ -16,3 +16,7 @@ exit 退出容器
 2.验证docker是否启动成功,命令:dockers version
 3.重启docker,命令:systemctl restart docker
 4.关闭docker,命令:systemctl stop docker END
+
+
+docker run -it -d -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 docker.io/
+mysql

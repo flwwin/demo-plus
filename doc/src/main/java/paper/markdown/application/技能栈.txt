@@ -55,3 +55,6 @@ ConcurrentHashMap1.8）原理，并研究过源码 线程池源码，ThreadLoacl
 熟悉项目的优化，有项目优化的经验。可以代码，jvm，网络传输，缓存，数据库，多角度优化项目。提高项目的处理效率。
 熟悉kafka，redis
 熟悉线程池，duobbo线程吃，jedis线程池调优，熟悉常用的缓存框架（guava,coffe）,熟悉mysql的索引原理，存储引擎，sql优化等
+
+对spring的源码比较熟悉，熟悉bean的生命周期，设计模式，IOC，DI等spring的设计思想。
+对Mybaits的源码有比较深入的研究。
