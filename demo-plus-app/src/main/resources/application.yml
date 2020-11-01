@@ -9,3 +9,4 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
   type-aliases-package: com.leven.demoplus.enity
+  configLocation: classpath:mapping/mybatis-config.xml
