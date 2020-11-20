@@ -13,13 +13,5 @@ public class HelloController {
     /*@Autowired
     ConsumeData consumeData;*/
 
-    @Autowired
-    private IUserService userService;
 
-
-    @RequestMapping("/hello")
-    public void sayHello() {
-        userService.get(1);
-
-    }
 }
