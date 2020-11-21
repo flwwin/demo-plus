@@ -1,6 +1,6 @@
 package com.leven.demoplus.enumDemo;
 
-import com.leven.demoplus.enity.Country;
+import com.leven.demoplus.javase.api.Country;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

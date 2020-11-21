@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Mapper
-@Repository
+@Service
 public interface UserDao {
 
     void get(Integer id);
