@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="mapping/app.properties"/>
+    <!--doc  https://gitee.com/free/Mybatis_Utils/blob/master/MybatisGeneator/MybatisGeneator.md-->
+    <context id="context" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- <plugin type="${mapper.plugin}">
+             <property name="mappers" value="${mapper.Mapper}"/>
+         </plugin>-->
+
+        <!--链接相关-->
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}">
+            <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--java对象相关-->
+        <javaModelGenerator targetPackage="com.leven.demoplus.mybatis.entity" targetProject="./src/main/java"/>
+
+        <!--mapper.xml文件相关-->
+        <sqlMapGenerator targetPackage="mapping" targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!--mapper接口相关-->
+        <javaClientGenerator targetPackage="com.leven.demoplus.mybatis.dao" targetProject="./src/main/java"
+                             type="XMLMAPPER"/>
+
+        <!--表配置相关-->
+        <table tableName="users">
+            <generatedKey column="id" sqlStatement="Mysql"/>
+        </table>
+        <!-- <table tableName="test" enableCountByExample="false" enableDeleteByExample="false"
+                enableSelectByExample="false"
+                enableUpdateByExample="false"/>-->
+    </context>
+</generatorConfiguration>

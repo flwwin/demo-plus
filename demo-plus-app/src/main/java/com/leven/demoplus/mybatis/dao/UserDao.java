@@ -1,5 +1,6 @@
 package com.leven.demoplus.mybatis.dao;
 
+import com.leven.demoplus.enity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -8,5 +9,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserDao {
 
-    void get(Integer id);
+    User get(Integer id);
 }

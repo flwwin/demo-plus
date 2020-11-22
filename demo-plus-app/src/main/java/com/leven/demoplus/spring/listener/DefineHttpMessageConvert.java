@@ -1,4 +1,4 @@
-package com.leven.demoplus.spring.applicationListenerdemo.conditionbean;
+package com.leven.demoplus.spring.listener;
 
 import com.google.protobuf.Message;
 import org.springframework.http.HttpInputMessage;

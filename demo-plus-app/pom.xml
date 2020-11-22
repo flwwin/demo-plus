@@ -15,6 +15,15 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <targetJavaProject>D:\opensorce\demo-plus\demo-plus-app\src\main\java</targetJavaProject>
+        <targetMapperPackage>mapping</targetMapperPackage>
+        <targetModelPackage>com.leven.demoplus.mybatis.dao</targetModelPackage>
+        <!--  XML生成路径  -->
+        <targetResourcesProject>D:\opensorce\demo-plus\demo-plus-app\src\main\java</targetResourcesProject>
+        <targetXMLPackage>mapper</targetXMLPackage>
+        <!--  依赖版本  -->
+        <mapper.version>0.0.1-SNAPSHOT</mapper.version>
+        <mysql.version>8.0.20</mysql.version>
     </properties>
 
     <dependencies>
@@ -79,9 +88,37 @@
 
     <build>
         <plugins>
+            <!--springboot 打包成jar的插件-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!--mybatis generator 逆向工厂插件,执行完成一次后就注释掉-->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <configurationFile>src/main/resources/genertor/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

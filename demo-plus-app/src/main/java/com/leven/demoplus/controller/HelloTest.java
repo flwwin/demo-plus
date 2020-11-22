@@ -24,15 +24,15 @@ public class HelloTest {
   @RequestMapping(
       path = "hello",
       method = RequestMethod.POST,
-      consumes = "application/json",
-      produces = MediaType.APPLICATION_JSON_VALUE)
+      consumes = "application/json", //指定请求的格式
+      produces = MediaType.APPLICATION_JSON_VALUE )//指定返回conent-type的格式
   @ResponseBody //返回到方法体
   public void hello(@RequestBody User user) {
     userService.get(1);
   }
 
   @RequestMapping(path = "/owners/{ownerId}", method = RequestMethod.GET)
-  public String findOwner(@PathVariable String ownerId, Model model) {
+  public String findOwner(@PathVariable String ownerId, Model model) { //@PathVariable 绑定请求路径上的值
     // Owner owner = ownerService.findOwner(ownerId);
     // model.addAttribute("owner", owner);
     return "displayOwner";
@@ -40,7 +40,7 @@ public class HelloTest {
 
   @RequestMapping(method = RequestMethod.GET)
   public String setupForm(
-      @RequestParam(value = "petId", required = false) int petId, ModelMap model) {
+      @RequestParam(value = "petId", required = false) int petId, ModelMap model) { //@RequestParam get请求中？后面携带参数绑定
     /*Pet pet = this.clinic.loadPet(petId);
     model.addAttribute("pet", pet);*/
     return "petForm";
