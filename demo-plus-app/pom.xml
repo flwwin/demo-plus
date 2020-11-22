@@ -15,13 +15,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <targetJavaProject>D:\opensorce\demo-plus\demo-plus-app\src\main\java</targetJavaProject>
         <targetMapperPackage>mapping</targetMapperPackage>
-        <targetModelPackage>com.leven.demoplus.mybatis.dao</targetModelPackage>
-        <!--  XML生成路径  -->
-        <targetResourcesProject>D:\opensorce\demo-plus\demo-plus-app\src\main\java</targetResourcesProject>
-        <targetXMLPackage>mapper</targetXMLPackage>
-        <!--  依赖版本  -->
         <mapper.version>0.0.1-SNAPSHOT</mapper.version>
         <mysql.version>8.0.20</mysql.version>
     </properties>
@@ -80,6 +74,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
@@ -95,13 +94,15 @@
             </plugin>
 
             <!--mybatis generator 逆向工厂插件,执行完成一次后就注释掉-->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <configuration>
                     <configurationFile>src/main/resources/genertor/generatorConfig.xml</configurationFile>
+                    &lt;!&ndash; 是否覆盖 &ndash;&gt;
                     <overwrite>true</overwrite>
+                    &lt;!&ndash;允许移动生成的文件 &ndash;&gt;
                     <verbose>true</verbose>
                 </configuration>
                 <executions>
@@ -119,7 +120,8 @@
                         <version>${mysql.version}</version>
                     </dependency>
                 </dependencies>
-            </plugin>
+
+            </plugin>-->
         </plugins>
     </build>
 

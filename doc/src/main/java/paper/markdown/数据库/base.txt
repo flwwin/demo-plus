@@ -1,0 +1,6 @@
+开发中容器碰到：
+Cause: org.springframework.jdbc.CannotGetJdbcConnectionException:
+Failed to obtain JDBC Connection; nested exception is java.sql.SQLException:
+Access denied for user 'root'@'172.17.0.1' (using password: YES)] with root cause
+
+处理：

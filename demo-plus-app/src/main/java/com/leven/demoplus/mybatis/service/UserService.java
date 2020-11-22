@@ -1,19 +1,27 @@
 package com.leven.demoplus.mybatis.service;
 
-import com.leven.demoplus.mybatis.dao.UserDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.leven.demoplus.mybatis.dao.UsersMapper;
+import com.leven.demoplus.mybatis.entity.Users;
+import com.leven.demoplus.mybatis.entity.UsersExample;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService implements IUserService {
 
-  private final UserDao userDao;
+  private final UsersMapper usersMapper;
 
-  public UserService(UserDao userDao) {
-    this.userDao = userDao;
+
+  public UserService(UsersMapper userDao) {
+    this.usersMapper = userDao;
   }
 
   public void get(Integer id) {
-    userDao.get(id);
+    UsersExample usersExample = new UsersExample();
+    usersExample.createCriteria().andIdEqualTo(id);
+
+    List<Users> users = usersMapper.selectByExample(usersExample);
+    System.out.println("users = " + users);
   }
 }

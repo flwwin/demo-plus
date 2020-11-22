@@ -8,7 +8,7 @@ docker images    //显示已安装的image
 docker search xx  //查找image
 docker pull [OPTIONS] NAME[:TAG|@DIGEST]    
 docker ps -a
-docker rm xx  //删除容易
+docker rm xx  //删除容器
 docker exec -it 容器id /bin/bash 进入容器
 exit 退出容器
 
@@ -19,4 +19,3 @@ exit 退出容器
 
 
 docker run -it -d -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 docker.io/
-mysql
