@@ -4,16 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-    <properties resource="mapping/app.properties">
-    </properties>
-    <settings>
-        <!--打开驼峰匹配-->
+    <properties resource="spring/app.properties"/>
+
+    <!--<settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
         <setting name="localCacheScope" value="STATEMENT"/>
-        <setting name="cacheEnabled" value="false"/>
+        <setting name="cacheEnabled" value="false"/> 默打打开二级缓存
         <setting name="defaultExecutorType" value="REUSE"/>
-    </settings>
-
+        <setting name="lazyLoadingEnabled" value="true"/>
+                <setting name="aggressiveLazyLoading" value="true"/> &lt;!&ndash;调用任意方法触发懒加载&ndash;&gt;
+                <setting name="returnInstanceForEmptyRow" value="true"/>是否允许返回空行
+        <setting name="configurationFactory" value="org.coderead.mybatis.LazyTest$ConfigurationFactory"/>
+    </settings>-->
 
 
     <environments default="dev">
@@ -27,4 +29,7 @@
             </dataSource>
         </environment>
     </environments>
+    <mappers>
+        <package name="mapper"/>
+    </mappers>
 </configuration>

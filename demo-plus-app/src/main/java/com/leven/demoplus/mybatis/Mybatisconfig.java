@@ -1,13 +1,10 @@
 package com.leven.demoplus.mybatis;
 
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.sql.DataSource;
+import org.springframework.context.annotation.ImportResource;
 
 @Configuration
+@ImportResource(locations = {"classpath:spring/application-bean.xml"})
 public class Mybatisconfig {
 
 }
