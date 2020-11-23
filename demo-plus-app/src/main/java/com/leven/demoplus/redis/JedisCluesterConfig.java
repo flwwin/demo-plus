@@ -19,7 +19,7 @@ public class JedisCluesterConfig {
       return new JedisCluster(parseNodes("127.0.0.1:6380"),parseJedisPoolConfig());
     }
 
-    public Set<HostAndPort> parseNodes(String nodesStr){
+    private Set<HostAndPort> parseNodes(String nodesStr){
         String[] nodeArr = nodesStr.split(",");
         HashSet<HostAndPort> nodeSet = Sets.newHashSet();
         for (String node : nodeArr) {
@@ -30,7 +30,7 @@ public class JedisCluesterConfig {
         return nodeSet;
     }
 
-    public JedisPoolConfig parseJedisPoolConfig(){
+    private JedisPoolConfig parseJedisPoolConfig(){
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxIdle(64);
         jedisPoolConfig.setMaxTotal(64);
