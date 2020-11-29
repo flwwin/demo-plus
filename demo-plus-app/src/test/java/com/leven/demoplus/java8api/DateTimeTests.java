@@ -1,19 +1,13 @@
 package com.leven.demoplus.java8api;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
-import java.time.temporal.TemporalUnit;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-@SpringBootTest
 class DateTimeTests {
 
   // LocalDate LocalTime LocalDateTime
@@ -43,6 +37,7 @@ class DateTimeTests {
 
     System.out.println("between = " + between.toMillis());
     System.out.println("between = " + between.toNanos());
+    System.out.println("between = " + between.toDays());
 
     System.out.println("========================");
   }

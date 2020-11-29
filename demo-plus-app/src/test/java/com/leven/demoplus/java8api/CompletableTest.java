@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 @Slf4j
 public class CompletableTest {
 
+
     private static final Executor ES = new ThreadPoolExecutor(10
             , 10
             , 0L
@@ -36,6 +37,7 @@ public class CompletableTest {
             CompletableFuture<String> future = new CompletableFuture<>();
 
             int finalI = i;
+
             CompletableFuture.runAsync(() -> {
                 if (finalI == 5) {
                     try {

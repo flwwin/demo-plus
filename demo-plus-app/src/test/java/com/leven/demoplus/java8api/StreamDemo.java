@@ -1,7 +1,6 @@
 package com.leven.demoplus.java8api;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,13 +12,15 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /** 四大函数式接口： 消费型接口： 供给型接口： 函数型接口： 断言型接口： */
-@SpringBootTest
 class StreamDemo {
 
   // 消费型接口
   @Test
   void test01() {
-    hello("hello world", System.out::println);
+    //hello("hello world", System.out::println);
+    hello(
+        "hello",
+            s -> System.out.println("s = " + s+"word"));
   }
 
   void hello(String str, Consumer<String> con) {
