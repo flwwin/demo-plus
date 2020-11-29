@@ -58,3 +58,6 @@ ConcurrentHashMap1.8）原理，并研究过源码 线程池源码，ThreadLoacl
 
 对spring的源码比较熟悉，熟悉bean的生命周期，设计模式，IOC，DI等spring的设计思想。
 对Mybaits的源码有比较深入的研究。
+
+
+熟练使用coffine guava等本地缓存框架

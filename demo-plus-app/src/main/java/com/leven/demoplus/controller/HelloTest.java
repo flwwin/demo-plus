@@ -1,6 +1,6 @@
 package com.leven.demoplus.controller;
 
-import com.leven.demoplus.enity.KafkaConsumeData;
+import com.leven.demoplus.cache.LocalCache;
 import com.leven.demoplus.enity.User;
 import com.leven.demoplus.mybatis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.acl.Owner;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping(path = "v1")
@@ -20,6 +20,9 @@ public class HelloTest {
   public HelloTest(UserService userService) {
     this.userService = userService;
   }
+
+  @Autowired
+  LocalCache localCache;
 
   @RequestMapping(
       path = "hello",
@@ -44,5 +47,10 @@ public class HelloTest {
     /*Pet pet = this.clinic.loadPet(petId);
     model.addAttribute("pet", pet);*/
     return "petForm";
+  }
+
+  @RequestMapping(path = "/test")
+  public void test() throws ExecutionException {
+    System.out.println("localDate = " + localCache.cacheList.get("456"));
   }
 }
