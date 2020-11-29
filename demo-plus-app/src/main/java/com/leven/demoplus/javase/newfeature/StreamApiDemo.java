@@ -1,4 +1,4 @@
-package com.leven.demoplus.javase.api;
+package com.leven.demoplus.javase.newfeature;
 
 import com.google.common.collect.Lists;
 import lombok.Data;

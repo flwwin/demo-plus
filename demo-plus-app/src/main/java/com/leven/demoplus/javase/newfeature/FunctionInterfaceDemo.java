@@ -1,6 +1,6 @@
-package com.leven.demoplus.java8api;
+package com.leven.demoplus.javase.newfeature;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,22 +12,20 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /** 四大函数式接口： 消费型接口： 供给型接口： 函数型接口： 断言型接口： */
-class StreamDemo {
+public class FunctionInterfaceDemo {
 
-  // 消费型接口
+  // 消费型接口Consumer:没有返回值的，需要要给入参
   @Test
-  void test01() {
-    //hello("hello world", System.out::println);
-    hello(
-        "hello",
-            s -> System.out.println("s = " + s+"word"));
+  public void test01() {
+    // hello("hello world", System.out::println);
+    hello("hello", s -> System.out.println("s = " + s + "word"));
   }
 
   void hello(String str, Consumer<String> con) {
     con.accept(str);
   }
 
-  // 供给型接口
+  // 供给型接口：Supplier  返回一个处理后的对象，不需要入参
   @Test
   void test02() {
     List list = getRandomNum(10, () -> new Random().nextInt(10));
@@ -42,7 +40,7 @@ class StreamDemo {
     return list;
   }
 
-  // 函数型接口
+  // 函数型接口Function  有入参也有出参
 
   @Test
   void test03() {
@@ -54,7 +52,7 @@ class StreamDemo {
     return fun.apply(str);
   }
 
-  // 断言型接口
+  // 断言型接口Predicate  返回一个boolean
   @Test
   void test04() {
     List<String> asList = Arrays.asList("123", "12345");
