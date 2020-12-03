@@ -20,6 +20,10 @@ public class CommandHelloWord extends HystrixCommand<String> {
         //return "Hello " + name + "!";
     }
 
+    /**
+     * 熔断时候的回调方法，包括执行时候的异常
+     * @return
+     */
     @Override
     protected String getFallback() {
         return "Hello Failure " + name + "!";

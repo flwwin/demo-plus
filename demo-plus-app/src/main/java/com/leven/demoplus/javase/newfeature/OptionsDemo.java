@@ -1,14 +1,12 @@
-package com.leven.demoplus.java8api;
+package com.leven.demoplus.javase.newfeature;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@SpringBootTest
 public class OptionsDemo {
     /**
      * Options类 java8新推出来的类，防止空指针的

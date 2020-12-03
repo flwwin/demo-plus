@@ -1,6 +1,7 @@
-package com.leven.demoplus.java8api;
+package com.leven.demoplus.javase.newfeature;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;

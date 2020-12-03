@@ -1,11 +1,8 @@
-package com.leven.demoplus.javase;
+package com.leven.demoplus.javase.newfeature;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Test;
 
-@SpringBootTest
-public class JavaSeTest {
-
+public class API {
     @Test
     void test01(){
         String str=null;

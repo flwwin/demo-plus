@@ -1,14 +1,17 @@
 package com.leven.demoplus.javase.proxy;
 
 import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.InvocationHandler;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
 
 /**
- * 1：CGlib动态代理（为啥是类？） 2：操作：1：引入cglib的jar 2：创建代理类 3：实现MethodInterceptor接口，对方法拦截 4：创建被代理类 3：原理： 4：应用：
+ * 1：CGlib动态代理（为啥是类？） <\br>
+ * 2：操作：1：引入cglib的jar
+ * 2：创建代理类
+ * 3：实现MethodInterceptor接口，对方法拦截
+ * 4：创建被代理类 3：原理： 4：应用：
  */
 class CgTarget {
   void sayHello(String param) {

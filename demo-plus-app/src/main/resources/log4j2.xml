@@ -22,15 +22,15 @@
                 <SizeBasedTriggeringPolicy size="500MB"/>
             </Policies>
             <DefaultRolloverStrategy >
-
+                <delete basePath="">
+                </delete>
             </DefaultRolloverStrategy>
         </RollingFile>
+
     </Appenders>
     <Loggers>
         <AsyncLogger name="com.meituan.Main" level="trace" additivity="false">
             <appender-ref ref="RollingFile"/>
-        </AsyncLogger>
-        <AsyncLogger name="RollingFile2" level="trace" additivity="false">
             <appender-ref ref="RollingFile2"/>
         </AsyncLogger>
         <Root level="debug">

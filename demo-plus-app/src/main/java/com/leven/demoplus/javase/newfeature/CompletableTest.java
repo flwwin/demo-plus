@@ -1,9 +1,8 @@
-package com.leven.demoplus.java8api;
+package com.leven.demoplus.javase.newfeature;
 
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@SpringBootTest
 @Slf4j
 public class CompletableTest {
 
@@ -176,7 +174,7 @@ public class CompletableTest {
     //合并两个list
     @Test
     void test07(){
-           String[] a = {"h","e","e","l","o"};
+        String[] a = {"h","e","e","l","o"};
         String[] b = {"w","o","r","l","d"};
 
         final List<String[]> strings = Arrays.asList(a, b);
