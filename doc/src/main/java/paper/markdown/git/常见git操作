@@ -1,3 +1,6 @@
+问题1：本地提交了，回滚
 1：git commit了代码但是没有提交回滚
 1：git log 查看自己需要回滚到那次提交的commitId
 2：git reset --hard commitId
+
+提交代码：
