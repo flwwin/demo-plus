@@ -1,0 +1,9 @@
+tail -f xxx.log|grep ""
+
+less xxx.log  less 进入后 ctrl+G  到文件最后，/关键字  往下搜  ?/关键字  往上搜索  翻页
+
+
+vim
+
+grep
+
