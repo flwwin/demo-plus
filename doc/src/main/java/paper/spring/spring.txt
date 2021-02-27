@@ -1,0 +1,14 @@
+spring源码的面试题目：
+1:spring的循环依赖，循环依赖是否可以关闭，如何进行循环依赖的，srping中默认单例支持循环依赖。
+
+2：spring的拓展，如何拓展
+
+
+3：spring的beanfactory和factoryBean如何理解。
+
+
+
+4：springboot的原理，如何自定义springboot的starter
+
+
+5: spring有那三个缓存

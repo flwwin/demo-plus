@@ -33,12 +33,9 @@ public class ThreadPoolDemo {
                 new ThreadPoolExecutor.AbortPolicy());
 
 
-            FutureTask<Integer> futureTask = new FutureTask<>(new Callable<Integer>() {
-                @Override
-                public Integer call() throws Exception {
-                     try {TimeUnit.SECONDS.sleep(3);} catch (InterruptedException e) {e.printStackTrace();}
-                    return 10 * 10;
-                }
+            FutureTask<Integer> futureTask = new FutureTask<>(() -> {
+                 try {TimeUnit.SECONDS.sleep(3);} catch (InterruptedException e) {e.printStackTrace();}
+                return 10 * 10;
             });
             threadPool.submit(futureTask);
             while (!futureTask.isDone()){

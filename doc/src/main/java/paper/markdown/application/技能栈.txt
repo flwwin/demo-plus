@@ -1,13 +1,21 @@
 熟悉常用设计模式：
-策略：
-责任链：   
-单例：
-装饰者：
-代理：
+动态代理：JDK 接口，基于反射  cglib 类，基于字节码重写
+责任链：
+单例：懒汉 饿汉，volatile禁止指令重排
+抽象模板方法：就是搞一个抽象类
+
+策略：就是实现同一个接口每个类有不同的实现，频控每个业务实现同一个配置解析的接口，每个业务不同的实现就是策略模式。
+spirng 当中大量使用了策略模式，比如后置处理器就是使用了策略的设计模式，有的对bean  单一职责化
+装饰器模式：
+1：流中new BufferedReader(new FileReader("")); 采用的就是装饰器模式文件流包装成缓存流
+
 观察者：
 适配器：
 外观/门面：
- 
+工厂模式：定义接口，注入工厂类，通过实现类，判断
+责任链模式：
+1：mybatis中的插件，通过装饰器模式+动态代理+责任链接模式
+
 研究过Mybatis3源码，熟悉sqlsession执行流程、熟悉一级缓存、二级缓存原理
  
 研究过Spring5注解方式启动Spring的源码，熟悉Springbean生命周期、SpringAOP底层原理、
@@ -17,7 +25,9 @@ Spring事务底层原理、Spring循环依赖解决的原理，事务的隔离�
  
 研究过Springboot2的启动源码，熟悉Springboot核心设计理念，可自定义starter组件，熟悉
 @SpringBootApplication底层原理
- 
+
+熟悉spring源码，可以对spring源码进行二次扩展
+
 熟悉Java8新特性流式编程，comepletetable ，optional 等等。。。
 熟悉线程池的优化。
  
@@ -80,3 +90,9 @@ ConcurrentHashMap1.8）原理，并研究过源码 线程池源码，ThreadLoacl
 
  问题：每个服务自己都创建连接池操作redis，流量高峰期导致redis连接太多，大量查询超时
  优化：查询redis 单独创建一个服务独立出来，更好控制redis连接数。
+
+熟练使用coffine guava等本地缓存框架
+
+熟悉常用的性能分析工具，jfr，火焰图，jmap，btrace(线上问题排查，字节码插桩工具)
+
+

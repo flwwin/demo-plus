@@ -35,6 +35,7 @@ public class JedisCluesterConfig {
         jedisPoolConfig.setMaxIdle(64);
         jedisPoolConfig.setMaxTotal(64);
         jedisPoolConfig.setMinIdle(64);
+        jedisPoolConfig.setMaxWaitMillis(200);
         return jedisPoolConfig;
     }
 }

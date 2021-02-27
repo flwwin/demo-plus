@@ -1,0 +1,266 @@
+##  设计模式之-策略模式
+
+​	开发中经常碰到很多同一入口，但是不同场景的业务需求，很多人都是if-else一把梭。这样开发是简单，但是代码很丑，业务耦合严重。也很不利于后期代码的维护，久而久之，代码就变成了"屎山"，无人敢动。
+
+​	测试模式就是可以解决少写if-else，让业务解耦，便于业务的拓展，逻辑也更加清晰。
+
+​	下面介绍两种测试模式写法。这种都是基于spring的，直接可以拿来用。
+
+------
+
+​	业务背景：
+
+要实现支持第三方登录，目前需要支持以下三种登录方式：
+
+- 微信登录
+- QQ 登录
+- 微博登录
+
+####  一：创建基础类
+
+- 创建请求上下文
+
+  ```java
+  @Data
+  public class LoginRequest {
+  
+      private LoginType loginType;
+  
+      private Long userId;
+  }
+  ```
+
+- 创建登录类型枚举，通过请求上线文中的登录类型选择不同的策略处理类
+
+  ```java
+  public enum LoginType {
+      QQ,
+      WE_CHAT,
+      WEI_BO;
+  }
+  ```
+
+  
+
+####  一：定义策略接口
+
+```java
+public interface LoginHandler<T extends Serializable> {
+
+    /**
+     * 获取登录类型
+     *
+     * @return
+     */
+    LoginType getLoginType();
+
+    /**
+     * 登录
+     *
+     * @param request
+     * @return
+     */
+    LoginResponse<String, T> handleLogin(LoginRequest request);
+}
+```
+
+ 接口中有两个方法：
+
+- 获取策略类型`getLoginType`
+- 处理登录的逻辑`handleLogin`
+
+####  二：实现策略接口
+
+- 微信登录处理器
+
+  ```java
+  @Component
+  public class WeChatLoginHandler implements LoginHandler<String> {
+  
+      private final Logger logger = LoggerFactory.getLogger(this.getClass());
+  
+      /**
+       * 获取登录类型
+       *
+       * @return
+       */
+      @Override
+      public LoginType getLoginType() {
+          return LoginType.WE_CHAT;
+      }
+  
+      /**
+       * 登录
+       *
+       * @param request
+       * @return
+       */
+      @Override
+      public LoginResponse<String, String> handleLogin(LoginRequest request) {
+          logger.info("微信登录：userId：{}", request.getUserId());
+          String weChatName = getWeChatName(request);
+          return LoginResponse.success("微信登录成功", weChatName);
+      }
+  
+      private String getWeChatName(LoginRequest request) {
+          return "wupx";
+      }
+  }
+  ```
+
+  
+
+- QQ登录处理器
+
+  ```java
+  @Component
+  public class QQLoginHandler implements LoginHandler<Serializable> {
+  
+      private final Logger logger = LoggerFactory.getLogger(this.getClass());
+  
+      /**
+       * 获取登录类型
+       *
+       * @return
+       */
+      @Override
+      public LoginType getLoginType() {
+          return LoginType.QQ;
+      }
+  
+      /**
+       * 登录
+       *
+       * @param request
+       * @return
+       */
+      @Override
+      public LoginResponse<String, Serializable> handleLogin(LoginRequest request) {
+          logger.info("QQ登录：userId：{}", request.getUserId());
+          return LoginResponse.success("QQ登录成功", null);
+      }
+  }
+  ```
+
+  
+
+  
+
+####  三：创建策略工厂
+
+```java
+@Component
+public class LoginHandlerFactory implements InitializingBean, ApplicationContextAware {
+    private static final Map<LoginType, LoginHandler<Serializable>> LOGIN_HANDLER_MAP = new EnumMap<>(LoginType.class);
+    private ApplicationContext appContext;
+
+    /**
+     * 根据登录类型获取对应的处理器
+     *
+     * @param loginType 登录类型
+     * @return 登录类型对应的处理器
+     */
+    public LoginHandler<Serializable> getHandler(LoginType loginType) {
+        return LOGIN_HANDLER_MAP.get(loginType);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        // 将 Spring 容器中所有的 LoginHandler 注册到 LOGIN_HANDLER_MAP
+        appContext.getBeansOfType(LoginHandler.class)
+                .values()
+                .forEach(handler -> LOGIN_HANDLER_MAP.put(handler.getLoginType(), handler));
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        appContext = applicationContext;
+    }
+}
+```
+
+
+
+####  四：实现登录服务
+
+```java
+@Service
+public class LoginServiceImpl implements LoginService {
+    @Autowired
+    private LoginHandlerFactory loginHandlerFactory;
+
+    @Override
+    public LoginResponse<String, Serializable> login(LoginRequest request) {
+        LoginType loginType = request.getLoginType();
+        // 根据 loginType 找到对应的登录处理器
+        LoginHandler<Serializable> loginHandler =
+                loginHandlerFactory.getHandler(loginType);
+        // 处理登录
+        return loginHandler.handleLogin(request);
+    }
+}
+```
+
+
+
+####  五：测试
+
+我们可以创建一个Controller来测试
+
+```java
+@RestController
+public class LoginController {
+
+    @Autowired
+    private LoginService loginService;
+
+    /**
+     * 登录
+     */
+    @PostMapping("/login")
+    public LoginResponse<String, Serializable> login(@RequestParam LoginType loginType, @RequestParam Long userId) {
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setLoginType(loginType);
+        loginRequest.setUserId(userId);
+        return loginService.login(loginRequest);
+    }
+}
+```
+
+通过请求中的登录类型，判断使用那种测试模式，然后其他业务逻辑就可以放到具体的策略中处理。下次再新增其他的登录类型就直接增加一个枚举类和策略处理类就可以。这样每个登录逻辑独立开来，达到解耦的目的。
+
+​	再说一下，上面的策略工厂是基于spring的beanFactory中获取的策略类的类型，然后再注入到工厂Map中。
+
+这里再介绍一种更加优雅的方法。
+
+```java
+@Component
+public class LoginHandlerFactoryv2 {
+  private static final Map<LoginType, LoginHandler<Serializable>> LOGIN_HANDLER_MAP =
+      new EnumMap<>(LoginType.class);
+
+  public LoginHandlerFactoryv2(List<LoginHandler> handlers) {
+    if (CollectionUtils.isEmpty(handlers)) {
+      return;
+    }
+    for (LoginHandler handler : handlers) {
+      LOGIN_HANDLER_MAP.put(handler.getLoginType(),handler);
+    }
+  }
+
+  /**
+   * 根据登录类型获取对应的处理器
+   *
+   * @param loginType 登录类型
+   * @return 登录类型对应的处理器
+   */
+  public LoginHandler<Serializable> getHandler(LoginType loginType) {
+    return LOGIN_HANDLER_MAP.get(loginType);
+  }
+}
+
+```
+
+​	这种直接通过接口将所有的实现类注入，更加简洁，推荐使用第二种方法。
+
+欢迎大家点赞，评论~~
