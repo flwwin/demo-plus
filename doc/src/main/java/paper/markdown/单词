@@ -4,3 +4,11 @@ subscribe 订阅者
 operator 操作者
 generate 产生
 instance  实例
+evaluate  计算
+execute   执行
+report  上报
+upload
+assign  分配
+fetch  获取
+tasks   任务
+resolver  解析
