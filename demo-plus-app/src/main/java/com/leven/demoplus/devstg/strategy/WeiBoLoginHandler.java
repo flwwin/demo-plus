@@ -30,6 +30,7 @@ public class WeiBoLoginHandler implements LoginHandler<Serializable> {
     @Override
     public LoginResponse<String, Serializable> handleLogin(LoginRequest request) {
         logger.info("微博登录：userId：{}", request.getUserId());
-        return LoginResponse.success("微博登录成功", null);
+       // return LoginResponse.success("微博登录成功", null);
+        return null;
     }
 }

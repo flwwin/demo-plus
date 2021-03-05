@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class LoginResponse<T,R> {
-    T success;
-    R code;
+    public T success;
+    public R code;
 }

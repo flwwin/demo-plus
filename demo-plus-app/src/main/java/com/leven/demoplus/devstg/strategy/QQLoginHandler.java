@@ -30,6 +30,7 @@ public class QQLoginHandler implements LoginHandler<Serializable> {
     @Override
     public LoginResponse<String, Serializable> handleLogin(LoginRequest request) {
         logger.info("QQ登录：userId：{}", request.getUserId());
-        return LoginResponse.success("QQ登录成功", null);
+        //return LoginResponse.success("QQ登录成功", null);
+        return null;
     }
 }

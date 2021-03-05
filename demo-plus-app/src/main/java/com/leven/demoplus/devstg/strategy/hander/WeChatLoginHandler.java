@@ -1,6 +1,7 @@
 package com.leven.demoplus.devstg.strategy.hander;
 
 import com.leven.demoplus.devstg.strategy.LoginHandler;
+import com.leven.demoplus.devstg.strategy.LoginRequest;
 import com.leven.demoplus.devstg.strategy.LoginResponse;
 import com.leven.demoplus.devstg.strategy.LoginType;
 import org.slf4j.Logger;
@@ -32,7 +33,8 @@ public class WeChatLoginHandler implements LoginHandler<String> {
     public LoginResponse<String, String> handleLogin(LoginRequest request) {
         logger.info("微信登录：userId：{}", request.getUserId());
         String weChatName = getWeChatName(request);
-        return LoginResponse.success("微信登录成功", weChatName);
+        //return LoginResponse.success("微信登录成功", weChatName);
+        return null;
     }
 
     private String getWeChatName(LoginRequest request) {
