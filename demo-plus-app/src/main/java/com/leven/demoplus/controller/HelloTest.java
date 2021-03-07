@@ -35,7 +35,7 @@ public class HelloTest {
   }
 
   @RequestMapping(path = "/owners/{ownerId}", method = RequestMethod.GET)
-  public String findOwner(@PathVariable String ownerId, Model model) { //@PathVariable 绑定请求路径上的值
+  public String findOwner(@PathVariable String ownerId, Model model) { //@PathVariable 绑定请求路径上的值{}
     // Owner owner = ownerService.findOwner(ownerId);
     // model.addAttribute("owner", owner);
     return "displayOwner";
