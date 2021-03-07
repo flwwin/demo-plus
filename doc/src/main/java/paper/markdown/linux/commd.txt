@@ -3,7 +3,16 @@ tail -f xxx.log|grep ""
 less xxx.log  less 进入后 ctrl+G  到文件最后，/关键字  往下搜  ?/关键字  往上搜索  翻页
 
 
-vim
+vim ====
+a 表示编辑
+wq! 保存退出
+q!  直接退出
 
-grep
+grep 命令
+tail -f |grep -E "spring|java" 匹配spring 或者java -E  后表示按照正则匹配
+
+grep filename -v "spring"  不包含spring的行
+
+
+
 
