@@ -22,7 +22,7 @@ import java.util.HashMap;
 public class KafkaConfig {
 
     @Autowired
-    private kafkaConfVO kafkaConf;
+    private kafkaConfSetting kafkaConf;
 
     @Bean(value = "kafkaConsumer", initMethod = "init",destroyMethod = "close")
     public KafkaLocalConsumer creatKafkaConsumerOperator() {

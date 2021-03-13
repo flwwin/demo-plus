@@ -117,5 +117,6 @@
     <modules>
         <module>demo-plus-app</module>
         <module>demo-plus-common</module>
+        <module>demo_plus-design</module>
     </modules>
 </project>
