@@ -7,8 +7,6 @@ import java.util.List;
 
 /**
  * 过滤链
- * @param <T>
- * @param <R>
  */
 public class LinkedFilterChain implements IFilterChain<RequestContext, RespondContext> ,Cloneable {
 
