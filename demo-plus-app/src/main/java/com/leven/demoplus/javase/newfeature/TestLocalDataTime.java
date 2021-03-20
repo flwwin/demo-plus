@@ -1,13 +1,17 @@
 package com.leven.demoplus.javase.newfeature;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Set;
 
 /** java8的一些新特性： 1：lamada表达式 2：Optional 3：新的时间api 4： */
+@Slf4j
 public class TestLocalDataTime {
 
   @Test
@@ -119,8 +123,56 @@ public class TestLocalDataTime {
     System.out.println("====================");
     // 时间转毫秒
     LocalDateTime now = LocalDateTime.of(2021, 10, 14, 18, 20);
-    System.out.println("now = " + now);
+    System.out.println("现在的毫秒数： = " + now);
     long l1 = now.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     System.out.println("l1 = " + l1);
+
+  }
+
+  /**
+   * 日期转毫秒
+   */
+  @Test
+  public void test06(){
+    // 时间转毫秒
+    LocalDateTime now = LocalDateTime.now();
+    log.info("现在的时间-> {}",now);
+
+    log.info("================================");
+
+    long milli = now.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+
+    log.info("日期转毫秒后的值：{}",milli);
+  }
+
+
+  /**
+   * 毫秒转日期
+   */
+  @Test
+  public void test07(){
+    Instant instant = Instant.ofEpochMilli(1616169512068L);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+    String format = formatter.format(LocalDateTime.ofInstant(instant,ZoneId.systemDefault()));
+    log.info("日期格式化后的结果-> {}",format);
+  }
+
+  /**
+   TemporalAdjuster:时间校正器。有时我们可能需要获取例如:将日期调整到“下个周日”等操作。
+   TemporalAdjusters:该类通过静态方法提供了大量的常用TemporalAdjuster的实现。
+   例如获取下个周日:
+   Loca1Date nextSunday = Loca1Date.now( ).with(
+   Tempora1Adjusters.next(DayOfweek.SUNDAY)
+   );
+   */
+
+  @Test
+  public void test08(){
+    Set<String> availableZoneIds = ZoneId.getAvailableZoneIds();
+    // log.info("支持的时区有：{}",availableZoneIds);
+
+    LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.now(), ZoneId.of("America/Detroit"));
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    log.info("America/Detroit 当前时间==> {}",formatter.format(localDateTime));
   }
 }

@@ -15,7 +15,7 @@ public class OptionsDemo {
      * 2:
      */
     @Test
-    void test01(){
+    public void test01(){
         List list = Arrays.asList(1,2,3);
 
         //这样防止空指针

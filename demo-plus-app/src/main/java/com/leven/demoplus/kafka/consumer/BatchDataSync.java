@@ -1,7 +1,7 @@
 package com.leven.demoplus.kafka.consumer;
 
-import com.leven.demoplus.devstg.dataconsumer.AbstractBatchDataSync;
 import com.leven.demoplus.enity.DataLine;
+import com.leven.demoplus.kafka.AbstractBatchDataSync;
 
 import java.util.List;
 

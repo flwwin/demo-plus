@@ -1,13 +1,16 @@
 package com.leven.demoplus.javase.newfeature;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+@Slf4j
 public class API {
     @Test
-    void test01(){
+    public void test01(){
         String str=null;
         str=String.format("Hi,%s", "小超");
         System.out.println(str);
+
         str=String.format("Hi,%s %s %s", "小超","是个","大帅哥");
         System.out.println(str);
         System.out.printf("字母c的大写是：%c %n", 'C');

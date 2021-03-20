@@ -3,6 +3,9 @@ package com.leven.demoplus.javase.collection;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * ConcurrentHashMap 知识点：
+ */
 public class CurrentHashMapDemo {
     public static void main(String[] args) {
         ConcurrentHashMap<Object, Object> map = new ConcurrentHashMap<>();

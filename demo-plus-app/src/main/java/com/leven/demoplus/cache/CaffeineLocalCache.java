@@ -29,7 +29,7 @@ public class CaffeineLocalCache {
       cache =
           Caffeine.newBuilder()
               .expireAfterWrite(10, TimeUnit.MINUTES) // 个元素在上一次读写操作后一段时间之后，在指定的时间后没有被再次访问将会被认定为过期项
-              .maximumSize(10_000)
+              .maximumSize(10000)
               .refreshAfterWrite(1, TimeUnit.MINUTES) //
               .executor(ES) // 线程池去刷新
               .build(loader); // 实现CacheLoader
@@ -43,14 +43,14 @@ public class CaffeineLocalCache {
 
   private String createExpensiveGraph(String key) {
     // todo  去加载缓存
-    return "";
+    return "缓存。。。。";
   };
 
   private CacheLoader<String, String> initLoader() {
     return new CacheLoader<String, String>() {
       @Nullable
       @Override
-      public String load(@NonNull String s) throws Exception {
+      public String load(@NonNull String s) {
         // 添加缓存
         cache.put(s, "123");
         return null;
@@ -58,7 +58,7 @@ public class CaffeineLocalCache {
 
       @Nullable
       @Override
-      public String reload(@NonNull String key, @NonNull String oldValue) throws Exception {
+      public String reload(@NonNull String key, @NonNull String oldValue) {
         // 刷新缓存
         return null;
       }

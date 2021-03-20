@@ -1,8 +1,8 @@
 package com.leven.demoplus.kafka.config;
 
 import com.google.common.collect.Maps;
-import com.leven.demoplus.devstg.dataconsumer.IHandBatchData;
 import com.leven.demoplus.enity.DataLine;
+import com.leven.demoplus.kafka.IHandBatchData;
 import com.leven.demoplus.kafka.consumer.AbstractKafkaStatConsumer;
 import com.leven.demoplus.kafka.consumer.BatchDataSync;
 import com.leven.demoplus.kafka.consumer.BizKafkaConsumer;
