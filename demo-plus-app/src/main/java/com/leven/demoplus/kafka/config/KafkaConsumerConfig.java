@@ -1,12 +1,12 @@
 package com.leven.demoplus.kafka.config;
 
 import com.google.common.collect.Maps;
+import com.leven.demoplus.kafka.consumer.data.BatchDataSync;
+import com.lenven.demo.plus.common.queue.IHandBatchData;
 import com.leven.demoplus.enity.DataLine;
-import com.leven.demoplus.kafka.IHandBatchData;
-import com.leven.demoplus.kafka.consumer.AbstractKafkaStatConsumer;
-import com.leven.demoplus.kafka.consumer.BatchDataSync;
-import com.leven.demoplus.kafka.consumer.BizKafkaConsumer;
-import com.leven.demoplus.kafka.consumer.KafkaLocalConsumer;
+import com.leven.demoplus.kafka.consumer.AbstractKafkaConsumerRunnable;
+import com.leven.demoplus.kafka.consumer.thread.BizKafkaConsumerRunnable;
+import com.leven.demoplus.kafka.consumer.thread.KafkaLocalConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
@@ -19,42 +19,39 @@ import java.util.HashMap;
  */
 @Configuration
 @ConditionalOnExpression(value = "false")
-public class KafkaConfig {
+public class KafkaConsumerConfig {
 
     @Autowired
-    private kafkaConfSetting kafkaConf;
+    private KafkaConfSetting setting;
 
     @Bean(value = "kafkaConsumer", initMethod = "init",destroyMethod = "close")
     public KafkaLocalConsumer creatKafkaConsumerOperator() {
         KafkaLocalConsumer consumer = new KafkaLocalConsumer();
-        consumer.setGroupId(kafkaConf.getGroupId());
-        consumer.setTopic(kafkaConf.getTopic());
-        consumer.setPropMap(kafkaConf.getProMap());
-        consumer.setTreadCount(kafkaConf.getTreadCount());
-        consumer.setKafkaVersion(kafkaConf.getKafkaVersion());
+        consumer.setGroupId(setting.getGroupId());
+        consumer.setTopic(setting.getTopic());
+        consumer.setPropMap(setting.getProMap());
+        consumer.setTreadCount(setting.getTreadCount());
+        consumer.setKafkaVersion(setting.getKafkaVersion());
         consumer.setKafkaConsumerStream(creatActualKafkaConsumer());
-        consumer.setInitSwitch(kafkaConf.isInitSwitch());
+        consumer.setInitSwitch(setting.isInitSwitch());
         return consumer;
     }
 
-    @Bean(value = "kafkaConsumer")
-    public AbstractKafkaStatConsumer creatActualKafkaConsumer() {
-        BizKafkaConsumer consumer = new BizKafkaConsumer();
+    public AbstractKafkaConsumerRunnable creatActualKafkaConsumer() {
+        BizKafkaConsumerRunnable consumer = new BizKafkaConsumerRunnable();
         HashMap<String, IHandBatchData<DataLine>> map = Maps.newHashMap();
         IHandBatchData batchDataSync = creatRealBatchDataSync();
-
         map.put(consumer.dataSyncKey(),batchDataSync);
         consumer.setDataSyncMap(map);
-
         return consumer;
     }
 
     @Bean(value = "batchDataSync",initMethod = "init",destroyMethod = "close")
     public BatchDataSync creatRealBatchDataSync() {
         BatchDataSync dataSync = new BatchDataSync();
-        dataSync.setBatchSize(kafkaConf.getBatchSize());
-        dataSync.setQueueSize(kafkaConf.getQueueSize());
-        dataSync.setMaxWaitMills(kafkaConf.getMaxWaitMills());
+        dataSync.setBatchSize(setting.getBatchSize());
+        dataSync.setQueueSize(setting.getQueueSize());
+        dataSync.setMaxWaitMills(setting.getMaxWaitMills());
         return dataSync;
     }
 }

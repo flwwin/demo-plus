@@ -1,12 +1,9 @@
 package com.leven.demoplus.kafka.consumer;
 
 import lombok.Data;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 import java.io.Closeable;
-import java.time.Duration;
-import java.util.Iterator;
 
 /**
  * kafka消费线程类
@@ -20,10 +17,10 @@ public abstract class KafkaConsumerRunable implements Runnable, Cloneable, Close
 
 
     @Override
-    protected KafkaConsumerRunable clone() throws CloneNotSupportedException {
+    public KafkaConsumerRunable clone() {
         try {
             return (KafkaConsumerRunable) super.clone();
-        } catch (CloneNotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

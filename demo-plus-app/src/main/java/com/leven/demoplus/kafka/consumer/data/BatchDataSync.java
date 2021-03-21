@@ -1,8 +1,9 @@
-package com.leven.demoplus.kafka.consumer;
+package com.leven.demoplus.kafka.consumer.data;
 
-import com.leven.demoplus.enity.DataLine;
-import com.leven.demoplus.kafka.AbstractBatchDataSync;
 
+import com.lenven.demo.plus.common.queue.AbstractBatchDataSync;
+
+import javax.sound.sampled.DataLine;
 import java.util.List;
 
 /**

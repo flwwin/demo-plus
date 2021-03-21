@@ -1,4 +1,4 @@
-package com.leven.demoplus.kafka;
+package com.lenven.demo.plus.common.queue;
 
 import java.io.Closeable;
 

@@ -1,6 +1,7 @@
-package com.leven.demoplus.kafka.consumer;
+package com.leven.demoplus.kafka.consumer.thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.leven.demoplus.kafka.consumer.KafkaConsumerRunable;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -68,7 +69,7 @@ public class KafkaLocalConsumer implements Closeable {
             KafkaConsumerRunable runable = null;
             try {
                 runable = kafkaConsumerStream.clone();
-            } catch (CloneNotSupportedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             if (null == runable){

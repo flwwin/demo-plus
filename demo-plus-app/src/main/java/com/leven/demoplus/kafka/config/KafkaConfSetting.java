@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import java.util.Map;
 
 @Data
-public class kafkaConfSetting {
+public class KafkaConfSetting {
     //@Value("${kafka.topic}") 从配置文件中读取配置
     //
     @Value("${kafka.topic}")

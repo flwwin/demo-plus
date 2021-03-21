@@ -1,7 +1,7 @@
 package com.leven.demoplus.kafka.consumer;
 
+import com.lenven.demo.plus.common.queue.IHandBatchData;
 import com.leven.demoplus.enity.DataLine;
-import com.leven.demoplus.kafka.IHandBatchData;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Slf4j
 @Data
-public abstract class AbstractKafkaStatConsumer extends KafkaConsumerRunable {
+public abstract class AbstractKafkaConsumerRunnable extends KafkaConsumerRunable {
 
     public String[] eventKeyConf;
     public Map<String, IHandBatchData<DataLine>>  dataSyncMap;
@@ -58,4 +58,6 @@ public abstract class AbstractKafkaStatConsumer extends KafkaConsumerRunable {
     }
 
    public abstract String dataSyncKey();
+
+
 }

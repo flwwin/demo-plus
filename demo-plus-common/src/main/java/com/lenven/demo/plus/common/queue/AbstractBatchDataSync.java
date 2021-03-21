@@ -1,4 +1,4 @@
-package com.leven.demoplus.kafka;
+package com.lenven.demo.plus.common.queue;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -115,8 +115,8 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
 
     private class FetchStatLineRunable implements Runnable {
         private long lastTime;
-        private int batchSize;
-        private int maxWaitMills;
+        private final int batchSize;
+        private final int maxWaitMills;
 
         FetchStatLineRunable(long lastTime, int batchSize, int maxWaitMills) {
             this.lastTime = lastTime;
@@ -128,7 +128,6 @@ public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
         public void run() {
             try {
                 List<T> list = new ArrayList<T>(batchSize);
-                // consumer dadta
                 while (!isStop) {
 
                     T data = dataQueue.poll(100, TimeUnit.MILLISECONDS); //poll不会阻塞(可以计时)，take会阻塞
