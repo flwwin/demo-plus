@@ -13,6 +13,7 @@ public class CommonConfig {
     public KafkaConfSetting createKakfaConfBean(){
         KafkaConfSetting kafkaConfSetting = new KafkaConfSetting();
         kafkaConfSetting.setTopic("lm_click");
+        kafkaConfSetting.setGroupId("dev-consumer");
         return kafkaConfSetting;
     }
 }

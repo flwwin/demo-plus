@@ -1,10 +1,9 @@
 package com.leven.demoplus.kafka.config;
 
 import com.google.common.collect.Maps;
-import com.leven.demoplus.kafka.consumer.data.BatchDataSync;
 import com.lenven.demo.plus.common.queue.IHandBatchData;
 import com.leven.demoplus.enity.DataLine;
-import com.leven.demoplus.kafka.consumer.AbstractKafkaConsumerRunnable;
+import com.leven.demoplus.kafka.consumer.data.BatchDataSync;
 import com.leven.demoplus.kafka.consumer.thread.BizKafkaConsumerRunnable;
 import com.leven.demoplus.kafka.consumer.thread.KafkaLocalConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +36,11 @@ public class KafkaConsumerConfig {
         return consumer;
     }
 
-    public AbstractKafkaConsumerRunnable creatActualKafkaConsumer() {
+    public BizKafkaConsumerRunnable creatActualKafkaConsumer() {
         BizKafkaConsumerRunnable consumer = new BizKafkaConsumerRunnable();
         HashMap<String, IHandBatchData<DataLine>> map = Maps.newHashMap();
         IHandBatchData batchDataSync = creatRealBatchDataSync();
+        // 这里也可以用其他map作为key，创建三个队列，用topic作为key保证进入同一个队列
         map.put(consumer.dataSyncKey(),batchDataSync);
         consumer.setDataSyncMap(map);
         return consumer;

@@ -5,7 +5,6 @@ import com.leven.demoplus.kafka.consumer.KafkaConsumerRunable;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -18,7 +17,6 @@ import java.util.concurrent.*;
 @Data
 public class KafkaLocalConsumer implements Closeable {
 
-    @Value("${threadCount}")
     private int treadCount = 10;
 
     private String groupId;
@@ -70,7 +68,7 @@ public class KafkaLocalConsumer implements Closeable {
             try {
                 runable = kafkaConsumerStream.clone();
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("create kafka run thread got error",e);
             }
             if (null == runable){
                 throw new NullPointerException("kafkaConsumerStream is null");

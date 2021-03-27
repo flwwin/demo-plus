@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
-/** 队列同步消费数据 数据和处理数据解耦 */
+/**
+ * 队列同步消费数据 数据和处理数据解耦
+ */
 @Component
 public class ConsumeData extends AbstractBatchDataSync<User> {
 

@@ -7,7 +7,7 @@ import javax.sound.sampled.DataLine;
 import java.util.List;
 
 /**
- * kafka消费批处理
+ * kafka消费批处理类
  */
 public class BatchDataSync extends AbstractBatchDataSync<DataLine> {
     @Override
