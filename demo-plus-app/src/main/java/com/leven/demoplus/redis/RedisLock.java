@@ -7,13 +7,14 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * redis分布式锁
+ * redis分布式锁：
  * 1：互斥性：只能有一个线程可以获取到锁
  * 2：锁超时：在超过规定时间自动释放锁，防止死锁
  * 3：支持阻塞和非阻塞：在一次没有获取锁的时候回重复尝试获得锁，而不是直接返回失败
  * 4：可重入性：在一个锁中可以再去获得锁
  * 5：高可用：在超过我们设定的锁过期的时间，但是我们的线程还没有执行完操作，还没有释放锁，就被过期释放了。所以要提供
  *           可以自动续期的机制
+ *
  */
 
 public class RedisLock {
@@ -84,7 +85,7 @@ public class RedisLock {
             thread.interrupt();
             //释放锁
             stringRedisTemplate.delete(key);
-            //释放线程id
+            //释放线程id  这里注意防止内存泄漏
             threadLocal.remove();//防止线程复用  释放锁
         }
         return null;

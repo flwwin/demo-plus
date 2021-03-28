@@ -14,7 +14,7 @@ interface UserMapper {
 
 public class Demo01 {
   public static void main(String[] args) {
-    //
+    // 这是Mapper文件执行的大概原理
     UserMapper userMapper =
         (UserMapper)
             Proxy.newProxyInstance(

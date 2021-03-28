@@ -1,4 +1,4 @@
-package com.leven.demoplus.until;
+package com.leven.demoplus.util;
 
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;

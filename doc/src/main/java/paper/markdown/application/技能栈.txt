@@ -9,23 +9,34 @@
 装饰者模式：
 1：JDK中的流就是装饰者模式
 代理模式：
-
+mybatis的插件就是采用责任链+动态代理模式
 观察者模式：
 
 适配器模式：
 外观/门面模式：
 
-2：研究过Mybatis3源码，熟悉sqlsession执行流程、熟悉一级缓存、二级缓存原理，知道mybatis的插件原理，熟悉mybatis采用的设计模式
+2：研究过Mybatis3源码，
+熟悉sqlsession执行流程、
+熟悉一级缓存、
+二级缓存原理，
+知道mybatis的插件原理，
+熟悉mybatis采用的设计模式
+
  
-3：研究过Spring5注解方式启动Spring的源码，熟悉Springbean生命周期、SpringAOP底层原理、
-Spring事务底层原理、Spring循环依赖解决的原理，事务的隔离级别，spring的拓展。
+3：研究过Spring5注解方式启动Spring的源码，
+熟悉Springbean生命周期、
+SpringAOP底层原理、
+Spring事务底层原理、
+Spring循环依赖解决的原理，
+事务的隔离级别，
+spring的拓展。
 
 4：研究过SpringMVC5的源码，可手动仿真SpringMVC框架
  
 研究过Springboot2的启动源码，熟悉Springboot核心设计理念，可自定义starter组件，熟悉
 @SpringBootApplication底层原理
  
-5：熟悉Java8新特性流式编程，comepletetable ，optional 等等。。。:
+5：熟悉Java8新特性流式编程，comepletetable ，optional 等等。。。，熟悉comepletetable异步编程
 
 6：熟悉线程池的优化，有线程池的调优经验。
 1：线程池有七个参数，优化可以参考美团技术团队的文章https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html
@@ -50,7 +61,7 @@ ConcurrentHashMap1.8）原理，并研究过源码 线程池源码，ThreadLoacl
 有阻塞队列的应用生产实践。
 熟悉Zookeeper使用，了解Zookeeper工作原理，分布式锁原理、分布式集群原理、选举策略、数据最终一致性原理。
  
-了解MySQL中的事务隔离级别和常见的锁（共享、排它、意向、记录、间隙、临键、行锁、表锁等）,熟悉mysql索引原理，可以对sql进行性能优化。
+了解MySQL中的事务隔离级别和常见的锁（共享、排它、意向、记录、间隙、临键、行锁、表锁等）,熟悉mysql索引原理，熟悉sql的性能优化。
  
 研究过Tomcat8底层源码，可在微服务架构下优化Tomcat8
  
