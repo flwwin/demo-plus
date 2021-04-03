@@ -1,28 +1,37 @@
-package com.leven.demoplus.kafka.config;
+package com.flw.demo.config;
 
+import com.flw.demo.consumer.data.BatchDataSync;
+import com.flw.demo.consumer.thread.BizKafkaConsumerRunnable;
+import com.flw.demo.consumer.thread.KafkaLocalConsumer;
 import com.google.common.collect.Maps;
 import com.lenven.demo.plus.common.data.DataLine;
 import com.lenven.demo.plus.common.kafka.KafkaSetting;
 import com.lenven.demo.plus.common.queue.IHandBatchData;
-import com.leven.demoplus.kafka.consumer.data.BatchDataSync;
-import com.leven.demoplus.kafka.consumer.thread.BizKafkaConsumerRunnable;
-import com.leven.demoplus.kafka.consumer.thread.KafkaLocalConsumer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Map;
 
-/**
- * 1: 通过配置类，对象注入到IOC中
- */
-@Configuration
-@ConditionalOnExpression(value = "false")
-public class KafkaConsumerConfig {
 
-    @Autowired
-    private KafkaSetting setting;
+@Configuration
+public class kafakaConfig {
+
+    private static final KafkaSetting setting = new KafkaSetting();
+
+    /**
+     *
+     */
+    static {
+        setting.setTopic("expose");
+        setting.setGroupId("dev-test");
+        setting.setInitSwitch(true);
+        setting.setBatchSize(500);
+        setting.setMaxWaitMills(3000);
+        setting.setKafkaVersion(9);
+        setting.setQueueSize(10000);
+        setting.setBatchSize(500);
+    }
+
 
     @Bean(value = "kafkaConsumer", initMethod = "init",destroyMethod = "close")
     public KafkaLocalConsumer creatKafkaConsumerOperator() {
@@ -55,4 +64,5 @@ public class KafkaConsumerConfig {
         dataSync.setMaxWaitMills(setting.getMaxWaitMills());
         return dataSync;
     }
+
 }

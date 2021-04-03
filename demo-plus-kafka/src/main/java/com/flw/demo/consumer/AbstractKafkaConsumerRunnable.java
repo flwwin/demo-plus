@@ -1,8 +1,7 @@
-package com.leven.demoplus.kafka.consumer;
+package com.flw.demo.consumer;
 
 import com.lenven.demo.plus.common.data.DataLine;
 import com.lenven.demo.plus.common.queue.IHandBatchData;
-import com.leven.demoplus.kafka.config.KafkaConsumerConfig;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

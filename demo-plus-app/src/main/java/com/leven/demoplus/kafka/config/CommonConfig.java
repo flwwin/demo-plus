@@ -1,5 +1,6 @@
 package com.leven.demoplus.kafka.config;
 
+import com.lenven.demo.plus.common.kafka.KafkaSetting;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
 public class CommonConfig {
 
     @Bean(value = "kafkaConf")
-    public KafkaConfSetting createKakfaConfBean(){
-        KafkaConfSetting kafkaConfSetting = new KafkaConfSetting();
-        kafkaConfSetting.setTopic("lm_click");
-        kafkaConfSetting.setGroupId("dev-consumer");
-        return kafkaConfSetting;
+    public KafkaSetting createKakfaConfBean(){
+        KafkaSetting kafkaSetting = new KafkaSetting();
+        kafkaSetting.setTopic("lm_click");
+        kafkaSetting.setGroupId("dev-consumer");
+        return kafkaSetting;
     }
 }

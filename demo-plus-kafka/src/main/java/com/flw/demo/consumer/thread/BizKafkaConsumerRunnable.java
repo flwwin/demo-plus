@@ -1,8 +1,8 @@
-package com.leven.demoplus.kafka.consumer.thread;
+package com.flw.demo.consumer.thread;
 
 
+import com.flw.demo.consumer.AbstractKafkaConsumerRunnable;
 import com.lenven.demo.plus.common.data.BizConstants;
-import com.leven.demoplus.kafka.consumer.AbstractKafkaConsumerRunnable;
 
 /**
  * 具体业务的消费处理类

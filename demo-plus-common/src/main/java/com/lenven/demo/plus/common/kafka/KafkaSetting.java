@@ -1,11 +1,11 @@
-package com.leven.demoplus.kafka.config;
+package com.lenven.demo.plus.common.kafka;
 
 import lombok.Data;
 
 import java.util.Map;
 
 @Data
-public class KafkaConfSetting {
+public class KafkaSetting {
     /**
      * topic 消费主题 可以通过动态配置中心动态注入
      */

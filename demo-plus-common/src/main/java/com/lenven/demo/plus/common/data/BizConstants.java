@@ -1,4 +1,4 @@
-package com.leven.demoplus.kafka.config;
+package com.lenven.demo.plus.common.data;
 
 public interface BizConstants {
 
