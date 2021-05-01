@@ -1,5 +1,5 @@
 
-Mysql自带主从同步 prxy  订阅binlog
+  Mysql自带主从同步 prxy  订阅binlog
 两种：
 1：proxy 代理 优势：隔离语言 atlas mycat
 2：jdbc增强 sharding-jdbc 必须java
