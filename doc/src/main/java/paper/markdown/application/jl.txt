@@ -1,0 +1,35 @@
+1、熟练掌握JavaSE基础知识，拥有丰富的系统设计分析能力及面向对象分析和设能力，
+熟悉常用的设计模式（代理、单例、工厂、建造者、观察者、策略、模版、装饰、门面等）及反射、自定义注解、泛型等；
+2、熟练掌握熟悉多线程与JUC并发编程synchronized原理、Atomic原子类、BlockingQueue、AQS、CAS、Lock锁原理、线程池原理、
+锁的分类实现（悲、乐、公、非、重入）、常用并发类库Semaphore/CountDownLatch/CyclicBarrie原理、
+disruptor/ForkJoin并发框架等；
+3、熟练掌握IDEA、Svn、Git、Maven等开发及版本控制工具，熟练掌握Java基础技术Jsp、Servlet、Jdbc，熟练掌握Web应用系统开发，具备的独立开发能力；
+4、熟练掌握JVM内存结构、对象内存布局、类加载器、字节码技术、生产环境下JVM参数调优、垃圾收集器原理（Serial、ParNew、
+Parallel Scavenge、Serial Old、Parallel Old、CMS、G1、ZGC原理等）、压力测试工具JMeter、生产环境下排查CPU飙高、内存泄漏问题，VisualVM、Arthas诊断工具使用；
+5、熟练运用Spring5、Mybatis3、SpringMVC、SpringBoot等优秀的开源框架，熟悉Spring的IOC、DI、AOP设计思想；
+6、有阅读过Mybatis3 （Mapper接口绑定、二级缓存设计）、Spring5（IOC容器、AOP切面编程、事务底层实现）、SpringMVC（执行流程）、SpringBoot 框架源码；
+7、有深入研究过ConurrentHashMap/HashMap、Arraylist、LinkedList、LinkedListHashMap集合框架源码底层实现；
+8、熟悉掌握SOA、分布式、微服务、服务网格，熟悉RPC远程调用框架、Dubbo、Dubbox、SpringCloud第一代Netflix和第二代SpringCloudAliBaba服务常用组件；
+9、有深入研究过Eureka、Nacos实现服务注册中心（心跳、续约、剔除、注册、健康检查、集群同步、raft选举）原理、及AP与CP模式的选择，Sentinel限流原理（漏桶，令牌桶，滑动窗口）等；
+10、有深入研究过分布式事务解决方案Base/CAP理论、柔性与刚性事务、最终一致性思想、2PC与3PC提交协议、分布式一致性算法Zab和Paxos原理，SeataAt解决分布式事务解决方案原理、RocketMQ事务消息解决分布式事务原理、分布式任务调度平台(xxl-job) 执行器集群分片算法原理、RPC接口幂等性问题、分布式Session一致性问题等；
+11、有深入研究过分布式锁解决方案Zookeeper（CP模式）、Redisson（AP模式）实现分布式锁原理，分布式锁问题（如何避免客户端死锁、续命、超时等问题）；
+12、熟练掌握网络通讯协议TCP/UDP，IO模型NIO、BIO、AIO，及NIO实现原理linux内核（select、poll、epoll），
+Linux内核零拷贝、内存池实现原理、Reactor 线程模型（单、多、主从），基于Netty+动态代理模式手写过Rpc框架；
+13、熟悉掌握消息中间件Kafka、RocketMQ、RabbitMQ运用，RabbitMQ队列模型、四种不同交换机、死信队列原理，掌握MQ使用常见问题（消息堆积、避免重复消费、不丢失、顺序一致性）、
+深入研究过Kafka
+底层实现原理（消息压缩、分区模型、分段日志、稀疏索引、缓冲池设计、offset原理、保证可靠消息、ISR副本选举原理、Kafka的性能优化等）
+14 、熟悉Restfull API开发规范，熟悉三方授权OAuth协议、Token/JWT、对接第三方支付接口(银联、支
+付接口(银联、支付宝、微信支付)及微信公众号开发；
+15、熟悉构建apm系统服务性能监控平台SkyWalking、分布式日志采集系统ELK+Kafka使用;
+16、熟悉微服务容器部署思想devops、docker基本命令、dockerCompose、Docker Swarm、Kubernetes部署微服务项目；
+17、有丰富微服务电商项目开发实战经验，熟悉整个微服务电商项目的架构流程，并实际参与过微服务电商项目，从项目需求讨论、研发阶段、分布式环境部署、
+技术难题解决、上线CDN部署等。
+
+
+
+
+
+
+
+
+
