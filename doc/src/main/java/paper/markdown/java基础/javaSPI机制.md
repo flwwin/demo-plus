@@ -1,6 +1,6 @@
 ##  Java 的SPI机制
 
-####  什么是java的SPI机制
+###  一：什么是java的SPI机制
 
 ​	SPI（Service Provider Interface）主要是被框架开发人员使用的一种技术。例如，使用 Java 语言访问数据库时我们会使用到 java.sql.Driver 接口，不同数据库产品底层的协议不同，提供的 java.sql.Driver 实现也不同，在开发 java.sql.Driver 接口时，开发人员并不清楚用户最终会使用哪个数据库，在这种情况下就可以使用 Java SPI 机制在实际运行过程中，为 java.sql.Driver 接口寻找具体的实现。
 
@@ -38,9 +38,54 @@ public static void main(String[] args) {
 
 java就是通过扫码META-INFO/services文件夹目录下面的文件，把实现类加载到servciceLoader里面。
 
+###  二：加载原理：
 
+第一步：创建一个加载器,这里没有开始加载
 
-###  JAVA SPI 在JDBC中的使用
+```java
+ ServiceLoader<ILog> load = ServiceLoader.load(ILog.class);
+```
+
+最终是会调用
+
+![](https://img-blog.csdnimg.cn/20210523120701615.png)
+
+这个方法主要就是1：清理缓存  2：创建一个lookupIterator
+
+第二步：创建一个迭代器
+
+```java
+Iterator<ILog> iterator = load.iterator();
+```
+
+第三步：迭代方法,真正加载是在hasNext方法里面。
+
+```
+ while (iterator.hasNext()){
+          ILog next = iterator.next();
+          next.log();
+      }
+```
+
+我们可以看下hasNext方法的内容
+
+![](https://img-blog.csdnimg.cn/20210523121227816.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Zsdzc3NTg=,size_16,color_FFFFFF,t_70)
+
+这里调用的就是之前初始化的一个`lookupIterator`迭代器
+
+继续往下，我们看到实际加载实例的地方了。
+
+<img src="https://img-blog.csdnimg.cn/20210523121452398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Zsdzc3NTg=,size_16,color_FFFFFF,t_70" style="zoom:67%;" />
+
+这里就可以看到通过读取配置文件加载实例了。
+
+第四步：调用next方法创建实例
+
+![](https://img-blog.csdnimg.cn/20210523121812484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Zsdzc3NTg=,size_16,color_FFFFFF,t_70)
+
+这些就是`ServiceLoader`实现SPI机制的整个流程，没有扣的特别细，逻辑也不是很复杂。
+
+###  三：JAVA SPI 在JDBC中的使用
 
 ​	上面介绍了JAVA的SPI机制，在java的JDBC就是通过SPI机制实现的，java定义了操作数据库的接口  java.sql.Driver，具体的实现不同数据库厂商提供不同的实现。以Mysql为例子。在 mysql-connector-java-*.jar 包中的 META-INF/services 目录下，有一个 java.sql.Driver 文件中只有一行内容，如下所示：
 
