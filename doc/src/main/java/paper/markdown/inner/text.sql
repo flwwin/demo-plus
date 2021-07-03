@@ -1,0 +1,22 @@
+CREATE TABLE `ads_union_material_push_record10` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '流水id',
+  `outer_ad_id` varchar(64) NOT NULL COMMENT '外部广告ID',
+  `owner_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '广告主ID',
+  `ad_name` varchar(120) NOT NULL DEFAULT '' COMMENT '广告名称',
+  `ad_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '内部广告ID',
+  `channel_id` varchar(11) NOT NULL DEFAULT '' COMMENT '渠道id',
+  `channel_name` varchar(120) NOT NULL DEFAULT '' COMMENT '渠道名称',
+  `extension_type` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '1:应用推广 2:链接推广 3.快应用',
+  `show_type` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '推广样式 1:banner 2:插屏 4:开屏 8:原生(联盟） 16:信息流 32:搜索直达(搜索推广) 64:激励视频 128:分发推广',
+  `ad_spec` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '广告规格 1.精选推荐 2.开机必备 3.安装有理 4.搜索列表 5.大图广告 6.小图广告 7.组图广告 8.视频广告 9.联盟图标 10.联盟图片 ',
+  `biz_type` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '1:应用分发 2:信息流 3:合约 4:招商 5:智能短信 6:联盟 7:搜索推广 ',
+  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
+  `push_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '推送时间',
+  `audit_status` int(2) unsigned NOT NULL DEFAULT '0' COMMENT '审核状态 0:审核中 1:审核通过 2:审核不通过',
+  `push_status` int(2) unsigned NOT NULL DEFAULT '0' COMMENT '推送状态 0:推送失败 1:推送成功',
+  `err_msg` varchar(2048) DEFAULT NULL COMMENT '错误信息',
+  `cr_id` varchar(64) DEFAULT NULL COMMENT '创意ID',
+  `pres_status` int(2) unsigned NOT NULL DEFAULT '0' COMMENT '时效状态 0:未生效 1:已生效 2:已过期',
+  PRIMARY KEY (`id`),
+  KEY `idx_material_push_record_ad_id` (`ad_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3058 DEFAULT CHARSET=utf8mb4 COMMENT='素材推送记录表'
