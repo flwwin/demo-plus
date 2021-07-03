@@ -1,0 +1,82 @@
+==========================  正式环境Recall ======================
+service  320183      1  0 Jun21 ?        2-02:21:11
+java -server -Xmx12g -Xms12g
+-XX:MetaspaceSize=512m
+-Xss256k
+-Djava.security.egd=file:/dev/./urandom
+-XX:+UnlockExperimentalVMOptions
+-XX:+HeapDumpOnOutOfMemoryError -XX:+DisableExplicitGC -XX:LargePageSizeInBytes=128m -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:ConcGCThreads=4
+-XX:ParallelGCThreads=8 -XX:G1NewSizePercent=5 -XX:G1MaxNewSizePercent=40
+-Xlog:gc*:file=/home/service/var/logs/ouiwthsmcnqy/gc-26042.log:time,pid:filecount=5,filesize=100m
+-Denv=idc_gzly -Dset=set_gzly1 -Dapp=ad-show-recall-svc
+-Ddubbo.application.name=ad-show-recall-svc
+-Ddubbo.protocol.port=26042
+-Ddubbo.service.executes=256
+-Ddubbo.protocol.threads=256
+-Dlog.level=info -DdbType=master
+-Dlog.base.dir=/home/service/var/logs
+-Dheracles.bootstrap.enabled=true
+-Dbiz.type=2 -jar ad-show-recall-service-0.0.2-RC05.jar
+
+
+java -server -Xmx12g -Xms12g
+-XX:MetaspaceSize=256m
+-Xss256k
+-XX:+UseG1GC
+-XX:+UnlockExperimentalVMOptions
+-XX:MaxGCPauseMillis=10
+-XX:+DisableExplicitGC
+-XX:G1HeapRegionSize=8M
+-XX:G1ReservePercent=20
+-XX:+HeapDumpOnOutOfMemoryError
+-Djava.security.egd=file:/dev/./urandom
+-Xlog:gc*,gc+heap=debug,gc+ergo*=trace,gc+age=trace,gc+phases*=debug,gc+remset=trace:file=/home/service/var/logs/7tguhvatnug3/gc-26042.log:time,uptime,pid:filecount=5,filesize=100m
+-Denv=
+-Dset=set_bjcp1
+-Dapp=ad-show-recall-svc
+-Ddubbo.application.name=ad-show-recall-svc
+-Ddubbo.protocol.port=26042
+-Ddubbo.service.executes=256
+-Ddubbo.protocol.threads=256
+-Dlog.level=info -DdbType=master
+-Dlog.base.dir=/home/service/var/logs
+-Dheracles.bootstrap.enabled=true -jar ad-show-recall-service-0.0.2-RC05.jar
+
+=============================  测试环境 ===========================
+## 非正式环境可以开启debug,一般情况下server=y,suspend=n
+DEBUG_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
+
+## 这里配置作为jvm默认参数 可扩展
+DEFAULT_OTHER_OPTS_KEY_VALUE=(dubbo.service.executes:DEFAULT_DUBBO_EXECUTE dubbo.protocol.threads:DEFAULT_DUBBO_THREADS log.level:DEFAULT_LOG_LEVEL dbType:DEFAULT_DB_TYPE log.base.dir:DEFAULT_LOG_BASE_DIR heracles.bootstrap.enabled:DEFAULT_HERACLES)
+DEFAULT_DB_TYPE="master"
+DEFAULT_MEM_OPTS="SUPER_LARGE2"
+DEFAULT_LOG_LEVEL="info"
+DEFAULT_LOG_BASE_DIR="/home/service/var/logs"
+DEFAULT_HERACLES="true"
+DEFAULT_DUBBO_EXECUTE="256"
+DEFAULT_DUBBO_THREADS="256"
+
+## 启动命令输出是否重定向到/dev/null
+NOT_DEV_NULL=false
+
+## 非正式环境可以开启debug,一般情况下server=y,suspend=n
+DEBUG_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
+# -Djava.security.egd=file:/dev/./urandom -Djava.rmi.server.hostname=10.177.139.147  -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
+JAVA_OPTS_11="-Djava.security.egd=file:/dev/./urandom -Djava.rmi.server.hostname=10.177.139.147  -XX:+UnlockExperimentalVMOptions -XX:+HeapDumpOnOutOfMemoryError -XX:+DisableExplicitGC -XX:LargePageSizeInBytes=128m -XX:+UseG1GC -XX:MaxGCPauseMillis=30 -XX:ConcGCThreads=4 -XX:ParallelGCThreads=8 -XX:G1NewSizePercent=5 -XX:G1MaxNewSizePercent=40 -Ddubbo.service.com.heytap.ad.show.recall.api.IRecallService.ServiceBean:com.heytap.ad.show.recall.api.IRecallService:1.0.0:2.irg.group=2.perf";
+GC_OPTS_11="-Xlog:gc*:file=/home/service/var/logs/SRV_NAME/gc-SRV_PORT.log:time,pid:filecount=5,filesize=100m"
+MEM_OPTS_SUPER_LARGE2_11="-server -Xmx8g -Xms8g  -XX:MetaspaceSize=512m -Xss256k"
+MEM_OPTS_SUPER_LARGE1_11="-server -Xmx4g -Xms4g -XX:MetaspaceSize=512m -Xss256k"
+MEM_OPTS_SUPER_LARGE_11="-server -Xmx3g -Xms3g -XX:MetaspaceSize=512m -Xss256k"
+MEM_OPTS_LARGE_11="-server -Xmx2g -Xms2g -XX:MetaspaceSize=256m -Xss256k"
+MEM_OPTS_MIDDLE_11="-server -Xmx1g -Xms1g -XX:MetaspaceSize=128m -Xss256k"
+MEM_OPTS_SMALL_11="-server -Xmx512m -Xms512m -XX:MetaspaceSize=64m -Xss256k"
+MEM_OPTS_TINY_SMALL_11="-server -Xmx256m -Xms256m -XX:MetaspaceSize=64m -Xss256k"
+MEM_OPTS_TINY_SMALL2_11="-server -Xmx128m -Xms64m -XX:MetaspaceSize=16m -Xss256k"
+
+
+G1： -XX:+UseG1GC
+heap：-Xms256M -Xmx1024M -Xmn64M -XX:NewSize=64M -XX:MaxNewSize=256M -XX:OldSize=64M -XX:NewRatio=4 -XX:SurvivorRatio=8 -XX:MaxHeapFreeRatio=70 -XX:MinHeapFreeRatio=40
+MetaspaceSize ： -XX:MetaspaceSize=64M -XX:MaxMetaspaceSize=512M
+PrintGC：  -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=2 -XX:GCLogFileSize=128M
+
+
