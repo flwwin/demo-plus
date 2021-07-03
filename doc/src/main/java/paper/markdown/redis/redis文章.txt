@@ -6,3 +6,7 @@ redis缓存的击穿：为没有的key，直接查询db，
 穿透：热点的key失效，瞬间大流量导致DB崩溃，
 雪崩：大面积key同时失效
 大key：导致redis集群数据迁移卡顿
+
+
+
+redis的突刺优化：https://mp.weixin.qq.com/s/lZ3Q8jP1RaoHQfKk4Ms5IA

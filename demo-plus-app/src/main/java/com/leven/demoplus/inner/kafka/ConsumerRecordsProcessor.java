@@ -4,7 +4,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 
 /**
  * kafka消费数据处理器
- * @author 80122172
  *
  */
 public abstract class ConsumerRecordsProcessor implements Cloneable {

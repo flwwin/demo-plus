@@ -14,8 +14,7 @@ package com.leven.demoplus.inner.aspect;//package com.leven.demoplus.inner.aspec
 //import java.util.concurrent.CompletionStage;
 //
 ///**
-// * @author quzijing
-// * @date 2020-10-08 1:12
+
 // */
 //@Aspect
 //@Component("memoryIndexAspect")

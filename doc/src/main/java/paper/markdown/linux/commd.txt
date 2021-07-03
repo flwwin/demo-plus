@@ -9,10 +9,17 @@ wq! 保存退出
 q!  直接退出
 
 grep 命令
+
 tail -f |grep -E "spring|java" 匹配spring 或者java -E  后表示按照正则匹配
 
 grep filename -v "spring"  不包含spring的行
 
 
 
+在需要知道一个命令怎么用
+
+```shell
+# 比如man grep 就是看到这个命令怎么使用的详细解释
+man grep
+```
 

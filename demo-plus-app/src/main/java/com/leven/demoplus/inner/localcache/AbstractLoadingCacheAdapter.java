@@ -13,7 +13,6 @@ package com.leven.demoplus.inner.localcache;//package com.leven.demoplus.inner.l
 //import java.util.concurrent.TimeUnit;
 //
 ///**
-// * @author quzijing
 // * @date 2019-12-09 18:51
 // */
 //public abstract class AbstractLoadingCacheAdapter<K, V> implements CaffeineCacheLoader<K, V> {

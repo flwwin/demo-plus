@@ -15,9 +15,7 @@ import java.util.concurrent.*;
  * 使用此类 需要 自己手动 引入 kafka-clients 及其版本
  * 
  * 原因 : kafka 0.10.0.0 的clients 消费不了 0.9.0.0 的服务 . 
- * 		正式环境存在多个版本的服务.但是client api是一致的,故需使用者自己引入包和对应的版本 
- * 
- * @author 80122172
+ * 		正式环境存在多个版本的服务.但是client api是一致的,故需使用者自己引入包和对应的版本
  * 
  */
 public class KafkaConsumerGroup implements Closeable {

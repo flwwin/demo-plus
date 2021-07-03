@@ -7,8 +7,7 @@ import java.io.Serializable;
  * 分页参数
  * 
  * Myabtis RowBounds 没有实现序列化
- * 
- * @author 80122172
+
  */
 public class Paginator implements Serializable{
 

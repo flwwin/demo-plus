@@ -3,10 +3,6 @@ package com.leven.demoplus.enity;
 
 import java.util.Date;
 
-/**
- * @author Tommy
- * Created by Tommy on 2019/6/27
- **/
 public class User implements java.io.Serializable {
     private Integer id;
     private String name;

@@ -10,11 +10,6 @@ import java.util.Enumeration;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-/**
- * IP and Port Helper for RPC, 
- * this class code was copy from com.alibaba.dubbo.common.utils.NetUtils
- * @author shawn.qianx
- */
 
 public class NetUtils {
     

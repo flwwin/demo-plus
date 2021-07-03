@@ -16,10 +16,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * kafka clients 消费线程
- * <p>
- * 线程内实例化一个Consumer
- *
- * @author 80122172
  */
 public class KafkaConsumerThread extends Thread {
 

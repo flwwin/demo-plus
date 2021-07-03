@@ -16,7 +16,7 @@ public class JedisCluesterConfig {
 
     @Bean
     public JedisCluster bizJedisCluster(){
-      return new JedisCluster(parseNodes("127.0.0.1:6380"),parseJedisPoolConfig());
+      return new JedisCluster(parseNodes("127.0.0.1:6380"),200,parseJedisPoolConfig());
     }
 
     private Set<HostAndPort> parseNodes(String nodesStr){

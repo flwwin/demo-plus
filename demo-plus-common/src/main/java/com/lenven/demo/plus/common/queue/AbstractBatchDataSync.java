@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * 4: 生产
  */
 @Slf4j
-public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T> {
+public abstract class AbstractBatchDataSync<T> implements IHandBatchData<T>{
     private LinkedBlockingQueue<T> dataQueue;
     private int batchSize; // 数据大小
     private int queueSize; // 队列大小

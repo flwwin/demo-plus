@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * springboot默认采用jackjson作为httpMessage的解析框架
+ * 修改配置支持通过FastJSON进行序列化
  */
 public class FastJsonConvertConfig extends WebMvcConfigurationSupport {
     @Override

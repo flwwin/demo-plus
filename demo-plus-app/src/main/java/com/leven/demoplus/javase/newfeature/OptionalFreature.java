@@ -3,6 +3,8 @@ package com.leven.demoplus.javase.newfeature;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -29,5 +31,20 @@ public class OptionalFreature {
 
         Optional<String> optional1 = Optional.ofNullable(null);
         log.info(optional1.get());
+    }
+
+    /**
+     * Options类 java8新推出来的类，防止空指针的
+     * 1：ofNullable(T value) 返回一个 Optional指定值的Optional，如果非空，则返回一个空的 Optional
+     *   一般搭配orElse(T other) 方法，防止空指针
+     * 2: of  返回一个非空的Optional 如果是null 爆空指针
+     */
+    @Test
+    public void test02(){
+        List list = null;
+
+        //这样防止空指针
+        List list1 = Optional.ofNullable(list).orElse(Collections.singletonList(1));
+        System.out.println(list1);
     }
 }

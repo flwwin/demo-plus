@@ -15,8 +15,6 @@ import java.util.Properties;
  * 物理分页插件 , 只支持MySQL
  * 
  * 直接在原始的SQL上面添加 limit 子句
- * 
- * @author 80122172
  *
  */
 @Intercepts({ @Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class,

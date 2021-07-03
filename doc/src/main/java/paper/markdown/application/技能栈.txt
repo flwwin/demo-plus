@@ -13,8 +13,12 @@
 mybatis的插件就是采用责任链+动态代理模式
 观察者模式：
 
-适配器模式：
+适配器模式：统一一个接口接入，然后通过适配器适配不同的接口
 外观/门面模式：
+
+通过mybatis插件的方式写了一个打印sql的插件
+
+onlinedebug：sl4j2的MDC+dubbo调用链的traceId方式+Dubbo的SPI机制实现了分布式的在线debug
 
 2：研究过Mybatis3源码，
 熟悉sqlsession执行流程、
@@ -22,28 +26,39 @@ mybatis的插件就是采用责任链+动态代理模式
 二级缓存原理，
 知道mybatis的插件原理，
 熟悉mybatis采用的设计模式
+
+
+
 熟悉JDBC通过java的SPI机制实现
 熟悉Mybatis和spring结合的原理
+
+通过BeanPostProecess实现接入，代理beanDefinition
+
 熟悉Mybatis和springboot结合原理
 
- 
+
+
 3：研究过Spring5注解方式启动Spring的源码，
 熟悉Springbean生命周期、
 SpringAOP底层原理、
 Spring事务底层原理、
 Spring循环依赖解决的原理，
+
+主要通过三级缓存，特别是二级缓存，value是一个lamda表达式，
+
 事务的隔离级别，
 spring的拓展。
-仔细研读过spring处理循环依赖的源码
 beanFactory 和 FactoryBean的区别
 
 4：研究过SpringMVC5的源码，可手动仿真SpringMVC框架
 熟悉springMVC的执行流程
- 
+
 研究过Springboot2的启动源码，熟悉Springboot核心设计理念，可自定义starter组件，熟悉
 @SpringBootApplication底层原理
 熟悉springboot的启动原理
- 
+
+springboot的SPI机制
+
 5：熟悉Java8新特性流式编程，comepletetable ，optional 等等。。。，熟悉comepletetable异步编程
 
 
@@ -69,7 +84,7 @@ ConcurrentHashMap1.8）原理，并研究过源码 线程池源码，ThreadLoacl
  redis的集群，优化，redis的分布式锁。
 
 熟悉多线程（通讯、锁，CAS机制）、Java内存模型，可手写Java线程池
- 
+
 熟悉Java内存结构，了解常用垃圾回收算法、垃圾回收器以及内存溢出和内存泄漏等问题
 
 
@@ -87,11 +102,11 @@ Mysql：
 DUBBO：
 熟悉dubbo的SPI机制
 
- 
+
 研究过Tomcat8底层源码，可在微服务架构下优化Tomcat8
- 
+
 熟悉Netty框架，了解BIO、NIO、TCP/UDP原理，了解OSI七层网络模型，了解请求粘包、拆包原因和解决方案，了解序列化机制。
- 
+
 熟悉SpringCloud框架，了解服务治理、服务注册发现、服务降级、熔断、隔离等Hystrix服务保护机制的原
 理，熟悉Ribbon负载均衡、Config配置中心、Zuul网关、Swagger接口调试
 
@@ -109,9 +124,35 @@ DUBBO：
 对spring的源码比较熟悉，熟悉bean的生命周期，设计模式，IOC，DI等spring的设计思想。
 对Mybaits的源码有比较深入的研究。
 
+
+
 可以对代码性能进行优化,熟悉jrf，FlameGraph，GC回收日志，jmap等工具发现性能瓶颈，并且对代码优化。
 
 熟悉AQS源码
+
+通过CLH的同步队列实现，通过一个state字段标记锁的被谁占用，lockSupport 阻塞
+
+所以，尽量锁的范围小，这样线程被睡眠的可能信比较小，可以提高性能，
+
+比较Sysnchronized，两者现在性能差不多了，都是CAS+线程阻塞。
+
+
+
+
+
+
+
+相似图片频控需求：
+
+
+
+
+
+redis优化场景：
+
+
+
+
 
 
 
