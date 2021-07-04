@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 /**
  * 异步编程：CompletableFuture
  */
-public class CompleteFutrueDemo {
+class CompleteFutrueDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         //1:把CompleteFutrue 当Future使用
         CompletableFuture<String> future = new CompletableFuture<>();

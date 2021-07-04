@@ -17,5 +17,7 @@
         <setting name="configurationFactory" value="org.coderead.mybatis.LazyTest$ConfigurationFactory"/>
     </settings>-->
 
-
+   <plugins>
+       <plugin interceptor="com.leven.demoplus.inner.mybatis.MybatisLogInterceptor"/>
+   </plugins>
 </configuration>

@@ -7,7 +7,6 @@
         <artifactId>demoplus</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.leven</groupId>
     <artifactId>demo-plus-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo-plus-service</name>
@@ -20,6 +19,8 @@
         <mapper.version>0.0.1-SNAPSHOT</mapper.version>
         <mysql.version>8.0.20</mysql.version>
         <druid-version>1.2.3</druid-version>
+        <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+        <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
     </properties>
 
     <dependencies>
@@ -78,6 +79,21 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.10</artifactId>
             <version>0.8.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun.jdmk</groupId>
+                    <artifactId>jmxtools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jmx</groupId>
+                    <artifactId>jmxri</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -156,6 +172,14 @@
             <artifactId>httpasyncclient</artifactId>
             <version>4.1.4</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-loader -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-loader</artifactId>
+            <version>2.3.1.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -175,18 +199,8 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
 
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -194,7 +208,7 @@
                     <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <!--mybatis generator 逆向工厂插件,执行完成一次后就注释掉-->
             <!--<plugin>
                 <groupId>org.mybatis.generator</groupId>
@@ -225,7 +239,7 @@
 
             </plugin>-->
 
-            <plugin>
+          <!--  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -244,7 +258,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
             <!-- 打包 -->
             <plugin>
@@ -253,7 +267,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <Main-Class>com.heytap.ad.show.frequence.BootstrapApplication</Main-Class>
+                            <Main-Class>com.leven.demoplus.DemoplusApplication</Main-Class>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs</classpathPrefix>
                             <useUniqueVersions>false</useUniqueVersions>

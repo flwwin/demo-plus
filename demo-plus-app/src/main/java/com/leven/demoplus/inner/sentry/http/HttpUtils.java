@@ -78,7 +78,7 @@ public class HttpUtils {
 		long start = System.nanoTime();
 		CloseableHttpResponse resp = null;
 		try {
-			resp = httpClient.execute(request, context);
+			resp = httpClient.execute(request, (org.apache.http.protocol.HttpContext) context);
 			
 			byte[] data = getDataFromHttpResponse(resp, request.getURI().toString());
 			// execute stat
